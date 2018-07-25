@@ -5,7 +5,7 @@ class Dashboard extends Component {
   render() {
     return (
         <div className="dashboard">
-            dashboard here
+          questions
         </div>
     )
   }

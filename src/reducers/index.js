@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
-import model from './model'
+import questions from './questions'
+import users from './security'
 
 export default combineReducers({
-  model,
+  questions,
+  users,
 })

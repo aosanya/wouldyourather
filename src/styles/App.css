@@ -133,15 +133,21 @@
     padding-left: 70px;
     transition: all .4s ease 0s;
 }
-#sidebar-wrapper {
-    left: 70px;
+    #sidebar-wrapper {
+        left: 70px;
+    }
+    #wrapper.active {
+        padding-left: 200px;
+    }
+    #wrapper.active #sidebar-wrapper {
+        left: 200px;
+        width: 200px;
+        transition: all .4s ease 0s;
+    }
 }
-#wrapper.active {
-    padding-left: 200px;
-}
-#wrapper.active #sidebar-wrapper {
-    left: 200px;
-    width: 200px;
-    transition: all .4s ease 0s;
-}
+
+
+.question-option {
+    color : #002147;
+    font-family: Arial, Helvetica, sans-serif;
 }
