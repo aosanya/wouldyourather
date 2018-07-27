@@ -14,7 +14,7 @@ class App extends Component {
 
   render() {
     return (
-      <div id="wrapper" class="active">
+      <div id="wrapper" className="active">
         <SecuredContent userId={this.state.userId}/>
       </div>
     )

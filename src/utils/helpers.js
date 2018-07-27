@@ -14,3 +14,4 @@ export function formatQuestion (question) {
       replies,
     }
 }
+
