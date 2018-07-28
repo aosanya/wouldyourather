@@ -24,9 +24,7 @@ class QuestionDisplay extends Component {
               Would You Rather :
               <div className="options-stats">
                     {options.map((option) => (
-                      <div key={option.id}>
                         <OptionDisplay  questionId = {id} option={option}/>
-                      </div>
                     ))}
               </div>
             </div>

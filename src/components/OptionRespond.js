@@ -13,10 +13,12 @@ class OptionRespond extends Component {
     }
 
     return (
-      <span>
-        <input type='checkbox'></input>
-        <span className='question-option'>{option.option}</span>
-      </span>
+        <div className='question-option'>
+          <span className='question-checkbox'>
+            <input  type='checkbox'></input>
+          </span>
+          {option.option}
+        </div>
     )
   }
 }

@@ -21,8 +21,9 @@ li {
 }
 
 .question-info {
-  font-size: 16px;
+  font-size: 15px;
   margin: 10px 0;
+  width:100%;
 }
 
 
@@ -36,4 +37,45 @@ li {
 .question-icon {
   font-size: 27px;
   color: #697784;
+}
+
+.question-option {
+  color : #002147;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #555;
+  width: 100%;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+}
+
+.question-checkbox {
+    padding: 7px 12px;
+    left:-7px;
+    position: relative;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 4px 0px 0px 4px;
+
+ }
+
+ .question-vote {
+  padding: 7px 12px;
+  left:-7px;
+  position: relative;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #555;
+  text-align: center;
+  background-color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 4px 0px 0px 4px;
 }

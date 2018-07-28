@@ -14,10 +14,13 @@ class OptionDisplay extends Component {
 
 
     return (
-      <span>
-        <span className='question-option'>{option.option}</span>
-        {` (`}{replies.length}{replies.length === 1 ? ` vote` : ` votes`})
-      </span>
+      <div className='question-option'>
+        <span className='question-vote'>
+          {replies.length}{replies.length === 1 ? ` vote` : ` votes`}
+        </span>
+        <span>{option.option}</span>
+
+      </div>
     )
   }
 }
