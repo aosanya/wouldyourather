@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionDisplay from './QuestionDisplay'
+import ContentWrapper from './ContentWrapper'
 
 class MyQuestions extends Component {
   render() {
     console.log(this.props.questionIds)
     return (
+      <ContentWrapper>
         <div className="myquestions">
             <ul className='dashboard-list'>
               {this.props.questionIds.map((id) => (
@@ -15,6 +17,7 @@ class MyQuestions extends Component {
               ))}
             </ul>
         </div>
+      </ContentWrapper>
     )
   }
 }

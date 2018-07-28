@@ -4,15 +4,9 @@ import { connect } from 'react-redux'
 import { handleUsers } from '../actions/shared'
 import { setAuthedUser } from '../actions/authedUser'
 //End App Actions
-
-import { BrowserRouter as
-    Redirect,} from 'react-router-dom'
 import './../styles/public.css';
 
 class Login extends Component {
-  state = {
-    redirectToReferrer: false
-  }
 
 
   componentDidMount() {
@@ -24,17 +18,12 @@ class Login extends Component {
     localStorage.setItem('user', JSON.stringify(event.target.value))
     const AUTHED_ID = localStorage.getItem('user')
     this.props.dispatch(setAuthedUser(AUTHED_ID))
-    this.setState({ redirectToReferrer: true })
+    this.props.history.push('/myquestions')
   }
 
   render() {
     const { loading, userIds } = this.props
-    const { from } = { from: { pathname: "/myquestions" } };
-    const { redirectToReferrer } = this.state;
 
-    if (redirectToReferrer) {
-      return <Redirect to={from} />;
-    }
 
     return (
         <Fragment>
@@ -43,7 +32,6 @@ class Login extends Component {
             :(
               <div className="login">
                   <div className="user-select" key="use-select">
-                      {`Select User : `}
                       <select defaultValue="" onChange={this.onChange}>
                       <option value="" disabled>Select user...</option>
                       {userIds.map((user) => (
