@@ -36,9 +36,8 @@ class App extends Component {
 
 
   render() {
-    const {isAuthenticated} = this.props
-
-    const PrivateRoute = ({ component: Component, ...rest }) => (
+    const {isLoading, isAuthenticated} = this.props
+    const PrivateRoute = ({isAuthenticated, component: Component, ...rest }) => (
       <Route
         {...rest}
         render={props =>
@@ -58,25 +57,37 @@ class App extends Component {
 
 
     return (
-      <Router>
-          <Fragment>
-            <Route path='/login' exact component={Login} />
-            <Route path='/logout' component={LogOut} />
-            <PrivateRoute path='/' exact component={Dashboard} />
-            <PrivateRoute path='/myquestions' component={MyQuestions} />
-            <PrivateRoute path='/answerquestions' component={AnswerQuestions} />
-            <PrivateRoute path='/myinterests' component={MyInterests} />
-            <PrivateRoute path='/leaderboard' component={LeaderBoard} />
-          </Fragment>
-      </Router>
+      <Fragment>
+            {isLoading === true
+            ? `Loading...`
+            :(
+              <Router>
+                  <Fragment>
+                    <Route path='/login' exact component={Login} />
+                    <Route path='/logout' component={LogOut} />
+                    <PrivateRoute path='/' exact isAuthenticated={isAuthenticated} component={Dashboard} />
+                    <PrivateRoute path='/myquestions' isAuthenticated={isAuthenticated} component={MyQuestions} />
+                    <PrivateRoute path='/answerquestions' isAuthenticated={isAuthenticated} component={AnswerQuestions} />
+                    <PrivateRoute path='/myinterests' isAuthenticated={isAuthenticated} component={MyInterests} />
+                    <PrivateRoute path='/leaderboard' isAuthenticated={isAuthenticated} component={LeaderBoard} />
+                  </Fragment>
+              </Router>)
+            }
+      </Fragment>
     )
   }
 }
 
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUserId }) {
+  var isAuthenticated = false
+
+  if (authedUserId !== null){
+    isAuthenticated = authedUserId !== ''
+  }
   return {
-    isAuthenticated: authedUser !== null
+    isLoading: authedUserId === null,
+    isAuthenticated : isAuthenticated,
   }
 }
 

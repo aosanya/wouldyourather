@@ -18,10 +18,8 @@ export function handleAuthedUser () {
 
   return (dispatch) => {
     return getCurrentUser()
-      .then(({ AUTHED_ID }) => {
-        console.log('step 2')
-        console.log(AUTHED_ID)
-        dispatch(getAuthedUser(AUTHED_ID))
+      .then(({ AuthedUserId}) => {
+        dispatch(getAuthedUser(AuthedUserId))
       })
   }
 }

@@ -23,8 +23,9 @@ import {
   export function getCurrentUser(){
     return Promise.all([
       _getCurrentUser(),
-    ]).then(([AUTHED_ID]) => ({
-      AUTHED_ID,
+    ]).then(([AuthedUserId, isAuthenticated]) => ({
+      AuthedUserId,
+      isAuthenticated,
     }))
 
 

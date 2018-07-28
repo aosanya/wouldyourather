@@ -14,10 +14,10 @@ class Login extends Component {
   }
 
   onChange = (event) => {
-    console.log("doing login")
+    console.log(this.props.location.state)
     localStorage.setItem('user', JSON.stringify(event.target.value))
-    const AUTHED_ID = localStorage.getItem('user')
-    this.props.dispatch(setAuthedUser(AUTHED_ID))
+    const AuthedUserId = localStorage.getItem('user')
+    this.props.dispatch(setAuthedUser(AuthedUserId))
     this.props.history.push('/myquestions')
   }
 
@@ -27,7 +27,7 @@ class Login extends Component {
 
     return (
         <Fragment>
-            {loading === 0
+            {loading === true
             ? `Loading users`
             :(
               <div className="login">
@@ -49,7 +49,7 @@ class Login extends Component {
 
 function mapStateToProps ({ users }) {
   return {
-    loading : console.log(Object.keys(users).length) === 0,
+    loading : users === null,
     userIds: Object.keys(users)
       .sort((a,b) => users[b].name - users[a].name)
   }

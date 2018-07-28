@@ -59,8 +59,9 @@ export function _getUsers () {
 export function _getCurrentUser () {
     console.log('step 1')
     console.log(localStorage.getItem('user'))
-    const AUTHED_ID =localStorage.getItem('user')
+    const AuthedUserId = localStorage.getItem('user') || ''
+
     return new Promise((res, rej) => {
-        res({AUTHED_ID})
+        res({AuthedUserId})
     })
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Nav () {
   return (
@@ -9,19 +9,19 @@ export default function Nav () {
       </ul>
       <ul className="sidebar-nav" id="sidebar">
         <li className="sidebar-item" >
-          <NavLink to={`/myquestions`}>My Questions<span className="sub_icon glyphicon glyphicon-link"></span></NavLink>
+          <Link to={`/myquestions`}>My Questions<span className="sub_icon glyphicon glyphicon-link"></span></Link>
         </li>
         <li className="sidebar-item" >
-          <NavLink to={`/answerquestions`}>Answer Questions<span className="sub_icon glyphicon glyphicon-link"></span></NavLink>
+          <Link to={`/answerquestions`}>Answer Questions<span className="sub_icon glyphicon glyphicon-link"></span></Link>
         </li>
         <li className="sidebar-item" >
-          <NavLink to={`/myinterests`}>My Interests<span className="sub_icon glyphicon glyphicon-link"></span></NavLink>
+          <Link to={`/myinterests`}>My Interests<span className="sub_icon glyphicon glyphicon-link"></span></Link>
         </li>
         <li className="sidebar-item" >
-          <NavLink to={`/leaderboard`}>Leader Board<span className="sub_icon glyphicon glyphicon-link"></span></NavLink>
+          <Link to={`/leaderboard`}>Leader Board<span className="sub_icon glyphicon glyphicon-link"></span></Link>
         </li>
         <li className="sidebar-item" >
-          <NavLink to={`/logout`}>Log Out<span className="sub_icon glyphicon glyphicon-link"></span></NavLink>
+          <Link to={`/logout`}>Log Out<span className="sub_icon glyphicon glyphicon-link"></span></Link>
         </li>
       </ul>
     </div>
