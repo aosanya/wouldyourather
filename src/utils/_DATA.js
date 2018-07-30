@@ -9,7 +9,7 @@ let users = {
       id: "tylermcginnis",
       name: "Tyler McGinnis",
       avatarURL: "https://tylermcginnis.com/would-you-rather/tyler.jpg",
-      questions: [],
+      questions: ['d8410323-2730-4b67-8ecc-d3ff6e2fa400'],
     },
     dan_abramov: {
       id: "dan_abramov",
@@ -41,6 +41,20 @@ let questions = {
         timestamp: 1518122597862,
         replies: [{user : 'tylermcginnis' ,option : "d8410323-2730-4b67-8ecc-d3ff6e2fa363"}, {user : 'dan_abramov' ,option : "d8410323-2730-4b67-8ecc-d3ff6e2fa364"}],
     },
+    "d8410323-2730-4b67-8ecc-d3ff6e2fa400": {
+        id: "d8410323-2730-4b67-8ecc-d3ff6e2fa400",
+        options: [{id : "d8410323-2730-4b67-8ecc-d3ff6e2fa401" , option : "be 10 minutes early"},
+                  {id : "d8410323-2730-4b67-8ecc-d3ff6e2fa402" , option : "be 5 minutes late"}],
+        timestamp: 1518122597863,
+        replies: [],
+    },
+    "d8410323-2730-4b67-8ecc-d3ff6e2fa500": {
+        id: "d8410323-2730-4b67-8ecc-d3ff6e2fa500",
+        options: [{id : "d8410323-2730-4b67-8ecc-d3ff6e2fa501" , option : "have a good short term memory"},
+                  {id : "d8410323-2730-4b67-8ecc-d3ff6e2fa502" , option : "have a good long term memory"}],
+        timestamp: 1518122597864,
+        replies: [],
+    },
 }
 
 export function _getQuestions () {
@@ -55,13 +69,10 @@ export function _getUsers () {
     })
 }
 
-
 export function _getCurrentUser () {
-    console.log('step 1')
-    console.log(localStorage.getItem('user'))
     const AuthedUserId = localStorage.getItem('user') || ''
-
     return new Promise((res, rej) => {
         res({AuthedUserId})
     })
 }
+
