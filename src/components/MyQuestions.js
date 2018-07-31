@@ -5,7 +5,6 @@ import ContentWrapper from './ContentWrapper'
 
 class MyQuestions extends Component {
   render() {
-    console.log(this.props.questionIds)
     return (
       <ContentWrapper>
         <div className="myquestions">

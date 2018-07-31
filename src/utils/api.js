@@ -10,6 +10,7 @@ import {
     }))
   }
 
+
   export function getUsers () {
     return Promise.all([
       _getUsers(),
@@ -43,7 +44,7 @@ import {
   function formatBoard(users, questions) {
     const userDetails = Object.values(users)
     const questionsDetails = Object.values(questions)
-    const leaderBoard = userDetails.map((user) =>({id: user.id, name: user.name, questions : myQuestions(questionsDetails, user.questions).length, replies : myReplies(questionsDetails, user.questions).reduce(sumArrayCount, 0)}))
+    const leaderBoard = userDetails.map((user) =>({id: user.id, name: user.name, avatar : user.avatarURL, questions : myQuestions(questionsDetails, user.questions).length, replies : myReplies(questionsDetails, user.questions).reduce(sumArrayCount, 0)}))
     return {leaderBoard}
   }
 

@@ -11,30 +11,73 @@ class LeaderBoard extends Component {
       this.props.dispatch(handleGetLeaderBoard())
   }
 
+  isAlternating = (index) => {
+    return index % 2 === 0
+  }
+
   render() {
-    const {isLoading, leaderBoard} = this.props
+    const {hasBoard, leaderBoard} = this.props
     return (
       <ContentWrapper>
-        {/* {isLoading === true
-            ? `Loading...`
-            :(<div className='leaderboard'>
-                {leaderBoard.map((user) => (
-                    <div>
+        <div className='leaderBoard'>
+          <div className='rTable leaderBoard-info'>
+            <div className="rTableRow">
+            <div className="rTableHead">Position</div>
+            <div className="rTableHead">Name</div>
+            <div className="rTableHead">Questions</div>
+            <div className="rTableHead">Replies</div>
+          </div>
+            {leaderBoard.map((user, index) => (
+                <div key={user.id} className={`rTableRow leaderBoard-user ${this.isAlternating(index) ? "rAlternating" : ""}`}>
+                    <div className='rTableCell'>
+                      {index + 1}
+                      <img
+                        src={user.avatar}
+                        alt={`Avatar of ${user.name}`}
+                        className='avatar'
+                      />
+                    </div>
+
+                    <div className='rTableCell'>
                       {user.name}
                     </div>
-                ))}
-              </div>
-        )} */}
+                    <div className='rTableCell leaderBoard-questions'>
+                      {user.questions}
+                    </div>
+                    <div className='rTableCell leaderBoard-votes'>
+                      {user.replies}
+                    </div>
+                </div>
+            ))}
+          </div>
+        </div>
       </ContentWrapper>
     )
   }
 }
 
+function sortQuestions(user1, user2){
+  return user2.questions > user1.questions
+}
+
+function sortReplies(user1, user2){
+  return user2.replies > user1.replies
+}
+
+function sortBoard(user1, user2){
+  return sortQuestions(user1, user2) && sortReplies(user1, user2)
+
+
+}
+
 function mapStateToProps ({leaderBoard}) {
-  console.log(leaderBoard)
+  var formatedBoard = Object.values(leaderBoard)
+  if (formatedBoard.length > 0){
+    formatedBoard = formatedBoard.sort((a,b) => sortBoard(a,b))
+  }
   return {
-    loading : leaderBoard === null,
-    leaderBoard : leaderBoard,
+    hasBoard : Object.keys(leaderBoard).length > 0,
+    leaderBoard : formatedBoard,
   }
 }
 
