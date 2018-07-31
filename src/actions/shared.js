@@ -43,11 +43,3 @@ export function handleGetLeaderBoard () {
   }
 }
 
-// export function handleGetLeaderBoard () {
-//   return (dispatch) => {
-//     return getLeaderboard()
-//       .then(({ leaderBoard }) => {
-//         dispatch(receiveLeaderBoard(leaderBoard))
-//       })
-//   }
-// }

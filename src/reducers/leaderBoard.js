@@ -5,7 +5,7 @@ export default function leaderboard (state = {}, action) {
     case RECEIVE_LEADERBOARD :
       return {
         ...state,
-        ...action.leaderboard
+        ...action.leaderBoard
       }
     default :
       return state

@@ -31,12 +31,19 @@ import {
     return  questions.filter((f) => myQuestionIds.includes(f.id))
   }
 
+  function myReplies(questions, myQuestionIds){
+    const userQuestions = myQuestions(questions, myQuestionIds)
+    return userQuestions.map((r) => r.replies)
+  }
+
+  function sumArrayCount(totalCount, array){
+    return totalCount + array.length
+  }
+
   function formatBoard(users, questions) {
     const userDetails = Object.values(users)
     const questionsDetails = Object.values(questions)
-
-    const leaderBoard = userDetails.map((user) =>({id: user.id, name: user.name, questions : myQuestions(questionsDetails, user.questions) }))
-    console.log(leaderBoard)
+    const leaderBoard = userDetails.map((user) =>({id: user.id, name: user.name, questions : myQuestions(questionsDetails, user.questions).length, replies : myReplies(questionsDetails, user.questions).reduce(sumArrayCount, 0)}))
     return {leaderBoard}
   }
 

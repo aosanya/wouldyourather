@@ -12,20 +12,29 @@ class LeaderBoard extends Component {
   }
 
   render() {
+    const {isLoading, leaderBoard} = this.props
     return (
       <ContentWrapper>
-        <div className="leaderboard">
-            LeaderBoard here
-        </div>
+        {/* {isLoading === true
+            ? `Loading...`
+            :(<div className='leaderboard'>
+                {leaderBoard.map((user) => (
+                    <div>
+                      {user.name}
+                    </div>
+                ))}
+              </div>
+        )} */}
       </ContentWrapper>
     )
   }
 }
 
-function mapStateToProps ({ leaderBoard }) {
+function mapStateToProps ({leaderBoard}) {
   console.log(leaderBoard)
   return {
     loading : leaderBoard === null,
+    leaderBoard : leaderBoard,
   }
 }
 
