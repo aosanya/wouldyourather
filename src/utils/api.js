@@ -1,5 +1,5 @@
 import {
-    _getQuestions, _getUsers, _getCurrentUser,
+    _getQuestions, _getUsers, _getCurrentUser, _getMyQuestions
   } from './_DATA.js'
 
   export function getInitialData () {
@@ -10,6 +10,13 @@ import {
     }))
   }
 
+  export function getMyQuestions (userId) {
+    return Promise.all([
+      _getMyQuestions(userId),
+    ]).then(([myQuestions]) => ({
+      myQuestions,
+    }))
+  }
 
   export function getUsers () {
     return Promise.all([

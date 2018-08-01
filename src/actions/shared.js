@@ -1,8 +1,9 @@
-import { getInitialData, getUsers, getCurrentUser, getLeaderboard } from '../utils/api'
+import { getInitialData, getUsers, getCurrentUser, getLeaderboard, getMyQuestions } from '../utils/api'
 import { receiveQuestions } from './questions'
 import { receiveUsers } from './security'
 import { getAuthedUser } from './authedUser'
 import { receiveLeaderBoard } from './leaderboard'
+import { receiveMyQuestions }  from './myQuestions'
 
 
 export function handleInitialData () {
@@ -29,6 +30,15 @@ export function handleUsers () {
     return getUsers()
       .then(({ users }) => {
         dispatch(receiveUsers(users))
+      })
+  }
+}
+
+export function handleGetMyQuestions (userId) {
+  return (dispatch) => {
+    return getMyQuestions(userId)
+      .then(({ myQuestions }) => {
+        dispatch(receiveMyQuestions(myQuestions))
       })
   }
 }

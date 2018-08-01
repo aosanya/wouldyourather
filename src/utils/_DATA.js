@@ -63,6 +63,14 @@ export function _getQuestions () {
     })
 }
 
+export function _getMyQuestions (userId) {
+    const key = userId.split('"').join('')
+    const myQuestionsIds = users[key].questions
+    const myQuestions = Object.values(questions).filter((f) => myQuestionsIds.includes(f.id))
+    return new Promise((res, rej) => { res({...myQuestions})})
+}
+
+
 export function _getUsers () {
     return new Promise((res, rej) => {
         setTimeout(() => res({...users}), 1000)

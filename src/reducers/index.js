@@ -3,10 +3,23 @@ import questions from './questions'
 import users from './security'
 import authedUser from './authedUser'
 import leaderBoard from './leaderBoard'
+import myQuestions from './myQuestions'
+import { LOG_OUT } from '../actions/logout'
 
-export default combineReducers({
+const appReducer = combineReducers({
   authedUser,
   leaderBoard,
   questions,
+  myQuestions,
   users,
 })
+
+const rootReducer = ( state, action ) => {
+  if ( action.type === LOG_OUT ) {
+    state = undefined;
+  }
+
+  return appReducer(state, action)
+}
+
+export default rootReducer
