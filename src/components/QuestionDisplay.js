@@ -1,7 +1,5 @@
 import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
-import { Link, withRouter } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import OptionDisplay from './OptionDisplay'
 
 

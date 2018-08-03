@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { setAuthedUser } from '../actions/authedUser'
+import { setAuthedUser } from '../services/session/actions'
 import { logOut } from '../actions/logout'
 import { Redirect } from 'react-router'
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import ContentWrapper from './ContentWrapper'
 import { connect } from 'react-redux'
 //App Actions
-import { handleGetLeaderBoard } from '../actions/shared'
+import { handleGetLeaderBoard } from '../services/poll/leaderBoard/api'
 //End App Actions
 import './../styles/public.css';
 
@@ -19,7 +19,7 @@ class LeaderBoard extends Component {
     const {hasBoard, leaderBoard} = this.props
     return (
       <ContentWrapper>
-        <div className='leaderBoard'>
+        <div className='contentBox'>
           <div className='rTable leaderBoard-info'>
             <div className="rTableRow">
             <div className="rTableHead">Position</div>

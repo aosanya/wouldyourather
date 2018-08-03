@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 //App Actions
 import { handleUsers } from '../actions/shared'
-import { setAuthedUser } from '../actions/authedUser'
+import { setAuthedUser } from '../services/session/actions'
 //End App Actions
 import './../styles/public.css';
 

@@ -3,34 +3,16 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
-import { handleGetMyQuestions, handleAuthedUser } from '../actions/shared'
+import { handleGetMyQuestions } from '../services/poll/myQuestions/api'
 
 class MyQuestions extends Component {
-  state = {
-    authedUserId: undefined,
-    questionsFetching: false,
+  componentDidMount() {
+    this.props.dispatch(handleGetMyQuestions(this.props.authedUserId))
   }
 
-   componentDidMount() {
-    const { authedUserId, myQuestions }  = this.props
-    this.props.dispatch(handleAuthedUser())
-   }
-
-
-   componentDidUpdate() {
-      const { authedUserId, myQuestions }  = this.props
-      console.log(authedUserId)
-      console.log(!this.state.questionsFetching)
-      if (!this.state.questionsFetching && authedUserId !== undefined){
-        this.props.dispatch(handleGetMyQuestions(authedUserId))
-        this.setState(() => ({
-          questionsFetching: true
-        }))
-      }
-   }
 
   render() {
-    const { authedUserId, myQuestions }  = this.props
+    const myQuestions  = this.props.myQuestions
     return (
       <ContentWrapper>
         <div className="myquestions">
@@ -51,12 +33,6 @@ class MyQuestions extends Component {
 }
 
 function mapStateToProps ({ myQuestions, authedUser }) {
-
-  var authedUserId = undefined
-  if (authedUser !== null){
-    authedUserId = authedUser.AuthedUserId
-  }
-
   var thisQuestions = undefined
   if (myQuestions !== null){
     thisQuestions = Object.values(myQuestions)
@@ -64,7 +40,7 @@ function mapStateToProps ({ myQuestions, authedUser }) {
   }
 
   return {
-    authedUserId: authedUserId,
+    authedUserId: authedUser,
     myQuestions: Object.values(thisQuestions)
   }
 }

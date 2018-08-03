@@ -1,4 +1,4 @@
-import { RECEIVE_LEADERBOARD } from '../actions/leaderboard'
+import { RECEIVE_LEADERBOARD } from './actions'
 
 export default function leaderboard (state = {}, action) {
   switch(action.type) {

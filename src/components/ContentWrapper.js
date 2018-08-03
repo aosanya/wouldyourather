@@ -3,6 +3,7 @@ import Nav from './Nav'
 
 class ContentWrapper extends Component {
   render() {
+
     return (
       <Fragment>
         <div id="wrapper" className="active">
