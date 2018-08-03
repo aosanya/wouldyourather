@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import questions from './questions'
+import questions from '../services/poll/questions/reducer'
 import users from './security'
 import authedUser from '../services/session/reducer'
 import leaderBoard from '../services/poll/leaderBoard/reducer'

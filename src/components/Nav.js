@@ -10,21 +10,12 @@ class Nav extends Component {
   }
 
   componentDidMount() {
-
+    this.props.dispatch(handleGetMyQuestions(this.props.authedUserId))
    }
 
-   componentDidUpdate() {
-      const { authedUserId, myQuestions }  = this.props
-      if (!this.state.questionsFetching && authedUserId !== undefined){
-        this.props.dispatch(handleGetMyQuestions(authedUserId))
-        this.setState(() => ({
-          questionsFetching: true
-        }))
-      }
-   }
 
   render() {
-    const { authedUserId, myQuestions }  = this.props
+    const  myQuestions   = this.props.myQuestions
     const myQuestionsCount = myQuestions === undefined ? '...' : `(${myQuestions.length})`
     return (
       <div id="sidebar-wrapper">
@@ -56,26 +47,16 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, questions }) {
-
-  console.log(questions)
-  var authedUserId = undefined
-  var myQuestions = undefined
-
-
-
-  if (authedUser !== null){
-    if (authedUser.AuthedUserId !== undefined){
-    const key = authedUser.AuthedUserId.split('"').join('')
-    authedUserId = key
-    myQuestions = Object.values(questions).filter((f) => f.author === key)
-    }
+function mapStateToProps ({ myQuestions, authedUser }) {
+  var thisQuestions = undefined
+  if (myQuestions !== null){
+    thisQuestions = Object.values(myQuestions)
+    //.sort((a,b) => myQuestions[b].timestamp - myQuestions[a].timestamp)
   }
 
-
   return {
-    authedUserId: authedUserId,
-    myQuestions: myQuestions
+    authedUserId: authedUser,
+    myQuestions: Object.values(thisQuestions)
   }
 }
 

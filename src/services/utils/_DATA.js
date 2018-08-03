@@ -63,21 +63,23 @@ export let questions = {
 }
 
 
-
 function generateUID () {
     const uuidv4 = require('uuid/v4')
     return uuidv4()
   }
 
-  function formatNewQuestion ({ option1, option2, authorKey }) {
+
+function formatNewQuestion ({ option1, option2, authorKey }) {
     return {
-      id: generateUID(),
-      author : authorKey,
-      options: [{id : generateUID(), option : option1}, {id : generateUID(), option : option2}],
-      replies : [],
-      timestamp: Date.now(),
+        id: generateUID(),
+        author : authorKey,
+        options: [{id : generateUID(), option : option1}, {id : generateUID(), option : option2}],
+        timestamp: Date.now(),
+        replies : [],
+
     }
-  }
+}
+
 
 export function _saveQuestion ({ option1, option2, author }) {
     const authorKey = author.split('"').join('')

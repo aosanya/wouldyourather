@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { formatQuestion, formatDate } from '../utils/helpers'
+import { formatQuestion, formatDate } from '../services/utils/helpers'
 import { Link, withRouter } from 'react-router-dom'
 import OptionRespond from './OptionRespond'
 

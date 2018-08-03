@@ -1,6 +1,6 @@
 import {
     questions, users,  _saveQuestion
-  } from '../utils/_DATA.js'
+  } from './utils/_DATA.js'
 
 
 
@@ -37,11 +37,3 @@ export function getUsers () {
   }))
 }
 
-
-export function saveQuestion (info) {
-  return Promise.all([
-    _saveQuestion(info)
-  ]).then(([questions]) => (
-    {questions}
-  ))
-}

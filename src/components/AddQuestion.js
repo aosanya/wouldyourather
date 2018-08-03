@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import ContentWrapper from './ContentWrapper'
-import { handleAddQuestion } from '../actions/questions'
+import { handleAddQuestion } from '../services/poll/questions/api'
+import { handleGetMyQuestions } from '../services/poll/myQuestions/api'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class AddQuestion extends Component {
@@ -32,6 +33,7 @@ class AddQuestion extends Component {
     }))
 
     NotificationManager.success('', 'Poll question added successfully')
+    this.props.dispatch(handleGetMyQuestions(this.props.authedUserId))
   }
 
   render() {
@@ -84,9 +86,9 @@ class AddQuestion extends Component {
   }
 }
 
-function mapStateToProps ({state, question}) {
+function mapStateToProps ({authedUser}) {
     return {
-      addedQuestion : question
+      authedUserId : authedUser
     }
   }
 
