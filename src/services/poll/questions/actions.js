@@ -15,3 +15,13 @@ export function receiveQuestions (questions) {
     questions,
   }
 }
+
+
+export const ADD_REPLY = 'ADD_REPLY'
+
+export function addReply (questions) {
+  return {
+    type: ADD_REPLY,
+    questions,
+  }
+}

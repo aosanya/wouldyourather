@@ -1,5 +1,5 @@
-import { getInitialData, getUsers,  getLeaderboard, getMyQuestions } from '../services/api'
-import { receiveQuestions } from './questions'
+import { getInitialData, getUsers } from '../services/api'
+import { receiveQuestions } from '../services/poll/questions/actions'
 import { receiveUsers } from './security'
 
 export function handleInitialData () {

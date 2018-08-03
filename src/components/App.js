@@ -6,7 +6,7 @@ import { BrowserRouter as Router,
         Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 //App Actions
-import { handleInitialData, handleAuthedUser } from '../actions/shared'
+import { handleInitialData } from '../actions/shared'
 //End App Actions
 //App Components
 import AnswerQuestions from './AnswerQuestions'

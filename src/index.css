@@ -60,10 +60,18 @@ li {
     line-height: 1;
     color: #555;
     text-align: center;
-    background-color: #ccc;
+    background-color: #87CEFA;
     border: 1px solid #ccc;
     border-radius: 4px 0px 0px 4px;
 
+ }
+
+ .checked{
+   background-color: #66ffb2;
+ }
+
+ .unchecked{
+  background-color: #ff9999;
  }
 
  .question-vote {

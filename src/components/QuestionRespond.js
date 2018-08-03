@@ -22,7 +22,7 @@ class QuestionRespond extends Component {
             <div className='question-info'>
               Would You Rather :
                 {options.map((option) => (
-                    <OptionRespond questionId = {id} option={option}/>
+                    <OptionRespond key={option.id} questionId = {id} option={option}/>
                 ))}
             </div>
         </div>
