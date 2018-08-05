@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import { handleAddReply, handleGetQuestions } from '../services/poll/questions/api'
 
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class OptionRespond extends Component {
 
-  handleChange(event) {
-    console.log(event.target.checked);
+  handleChange(e) {
+    if (!e.target.checked) return
+    this.props.dispatch(handleAddReply(this.props.question.id, this.props.id))
+    this.props.dispatch(handleGetQuestions())
+    NotificationManager.success('', 'Thank you for voting')
   }
 
   render() {
@@ -20,19 +25,24 @@ class OptionRespond extends Component {
     return (
         <div className='question-option' >
           <span className={`question-checkbox ${checkboxStlye}`}>
-            <input  type='checkbox' defaultChecked={checkboxValue} disabled={isAnswered} onChange={this.handleChange}></input>
+            <input  type='checkbox' defaultChecked={checkboxValue} disabled={isAnswered} onChange={this.handleChange.bind(this)}></input>
           </span>
-          {option.option}
+          {option.text}
+          <NotificationContainer/>
         </div>
     )
   }
 }
 
-function mapStateToProps ({questions, authedUser}, { questionId, option }) {
-    const question = questions[questionId]
+function mapStateToProps ({authedUser, questions}, { question, option , id }) {
+
     const authedUserId = authedUser.split('"').join('')
-    let isSelected =  question.replies[authedUserId] === option.id
-    let isAnswered =  question.replies[authedUserId] !== undefined
+    let isSelected =  questions[question.id][id].votes.includes(authedUser)
+    let isAnswered =  questions[question.id].optionOne['votes'].includes(authedUserId) || questions[question.id].optionTwo['votes'].includes(authedUserId)
+
+    console.log(isSelected)
+    console.log(isAnswered)
+
     return {
         option: option ? option : null,
         isSelected : isSelected,

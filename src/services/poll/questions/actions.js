@@ -19,9 +19,8 @@ export function receiveQuestions (questions) {
 
 export const ADD_REPLY = 'ADD_REPLY'
 
-export function addReply (questions) {
+export function addReply () {
   return {
     type: ADD_REPLY,
-    questions,
   }
 }

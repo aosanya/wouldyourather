@@ -6,17 +6,15 @@ import { BrowserRouter as Router,
         Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 //App Actions
-import { handleInitialData } from '../actions/shared'
+import { handleGetQuestions } from '../services/poll/questions/api'
 //End App Actions
 //App Components
-import AnswerQuestions from './AnswerQuestions'
-import Dashboard from './Dashboard'
-import LeaderBoard from './LeaderBoard'
-import MyInterests from './MyInterests'
+import Login from './Login'
+import LogOut from './LogOut'
+import Home from './Home'
 import MyQuestions from './MyQuestions'
 import AddQuestion from './AddQuestion'
-import LogOut from './LogOut'
-import Login from './Login'
+import LeaderBoard from './LeaderBoard'
 //End App Components
 
 class App extends Component {
@@ -26,7 +24,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(handleInitialData())
+    this.props.dispatch(handleGetQuestions())
   }
 
   toggleMenu = (e, id) => {
@@ -64,11 +62,9 @@ class App extends Component {
             <Fragment>
               <Route path='/login' exact component={Login} />
               <Route path='/logout' component={LogOut} />
-              <PrivateRoute path='/' exact isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Dashboard} />
+              <PrivateRoute path='/' exact isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Home} />
               <PrivateRoute path='/myquestions' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={MyQuestions} />
               <PrivateRoute path='/add' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={AddQuestion} />
-              <PrivateRoute path='/answerquestions' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={AnswerQuestions} />
-              <PrivateRoute path='/myinterests' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={MyInterests} />
               <PrivateRoute path='/leaderboard' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={LeaderBoard} />
             </Fragment>
         </Router>

@@ -14,11 +14,12 @@ class Login extends Component {
   }
 
   onChange = (event) => {
-    console.log(this.props.location.state)
-    localStorage.setItem('user', JSON.stringify(event.target.value))
-    const AuthedUserId = localStorage.getItem('user')
-    this.props.dispatch(setAuthedUser(AuthedUserId))
-    this.props.history.push('/myquestions')
+    //console.log(this.props.location.state)
+    //localStorage.setItem('user', JSON.stringify(event.target.value))
+    //const AuthedUserId = localStorage.getItem('user')
+    //key = userId.split('"').join('')
+    this.props.dispatch(setAuthedUser(event.target.value))
+    this.props.history.push('/')
   }
 
   render() {

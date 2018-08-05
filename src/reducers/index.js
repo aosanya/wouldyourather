@@ -10,7 +10,7 @@ const appReducer = combineReducers({
   authedUser,
   leaderBoard,
   questions,
-  myQuestions,
+  //myQuestions,
   users,
 })
 

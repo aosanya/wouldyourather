@@ -5,13 +5,14 @@ export function formatDate (timestamp) {
   }
 
 export function formatQuestion (question) {
-    const { id, timestamp, options, replies } = question
+    const { id, author , timestamp, optionOne, optionTwo } = question
 
     return {
       id,
+      author,
       timestamp,
-      options,
-      replies,
+      optionOne,
+      optionTwo
     }
 }
 

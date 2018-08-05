@@ -4,15 +4,6 @@ import { Link } from 'react-router-dom'
 import { handleGetMyQuestions } from '../services/poll/myQuestions/api'
 
 class Nav extends Component {
-  state = {
-    authedUserId: undefined,
-    questionsFetching: false,
-  }
-
-  componentDidMount() {
-    this.props.dispatch(handleGetMyQuestions(this.props.authedUserId))
-   }
-
 
   render() {
     const  myQuestions   = this.props.myQuestions
@@ -24,16 +15,13 @@ class Nav extends Component {
         </ul>
         <ul className="sidebar-nav" id="sidebar">
           <li className="sidebar-item" >
+            <Link to={`/`}>Home<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+          </li>
+          <li className="sidebar-item" >
             <Link to={`/myquestions`}>My Questions{myQuestionsCount}<span className="sub_icon glyphicon glyphicon-link"></span></Link>
           </li>
           <li className="sidebar-item" >
             <Link to={`/add`}>Add Question<span className="sub_icon glyphicon glyphicon-link"></span></Link>
-          </li>
-          <li className="sidebar-item" >
-            <Link to={`/answerquestions`}>Answer Questions<span className="sub_icon glyphicon glyphicon-link"></span></Link>
-          </li>
-          <li className="sidebar-item" >
-            <Link to={`/myinterests`}>My Interests<span className="sub_icon glyphicon glyphicon-link"></span></Link>
           </li>
           <li className="sidebar-item" >
             <Link to={`/leaderboard`}>Leader Board<span className="sub_icon glyphicon glyphicon-link"></span></Link>
@@ -47,10 +35,10 @@ class Nav extends Component {
   }
 }
 
-function mapStateToProps ({ myQuestions, authedUser }) {
+function mapStateToProps ({ questions, authedUser }) {
   var thisQuestions = undefined
-  if (myQuestions !== null){
-    thisQuestions = Object.values(myQuestions)
+  if (questions !== undefined){
+    thisQuestions = Object.values(questions).filter((f) => f.author === authedUser)
     //.sort((a,b) => myQuestions[b].timestamp - myQuestions[a].timestamp)
   }
 

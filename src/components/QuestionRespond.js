@@ -14,24 +14,22 @@ class QuestionRespond extends Component {
       return <p>This Question doesn't exist</p>
     }
 
-    const {
-      id, timestamp, options, replies} = question
+
+    const {optionOne, optionTwo} = question
 
     return (
         <div className='question'>
             <div className='question-info'>
               Would You Rather :
-                {options.map((option) => (
-                    <OptionRespond key={option.id} questionId = {id} option={option}/>
-                ))}
+              <OptionRespond key='optionOne' question = {question} id='optionOne' option={optionOne}/>
+              <OptionRespond key='optionTwo' question = {question} id='optionTwo' option={optionTwo}/>
             </div>
         </div>
     )
   }
 }
 
-function mapStateToProps ({questions}, { id }) {
-  const question = questions[id]
+function mapStateToProps ({questions}, { question }) {
 
   return {
     question: question

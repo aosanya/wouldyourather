@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
 import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
-import { handleGetMyQuestions } from '../services/poll/myQuestions/api'
 
 class MyQuestions extends Component {
-  componentDidMount() {
-    this.props.dispatch(handleGetMyQuestions(this.props.authedUserId))
-  }
 
 
   render() {
@@ -32,10 +27,10 @@ class MyQuestions extends Component {
   }
 }
 
-function mapStateToProps ({ myQuestions, authedUser }) {
+function mapStateToProps ({ authedUser, questions }) {
   var thisQuestions = undefined
-  if (myQuestions !== null){
-    thisQuestions = Object.values(myQuestions)
+  if (questions !== undefined){
+    thisQuestions = Object.values(questions).filter((f) => f.author === authedUser)
     //.sort((a,b) => myQuestions[b].timestamp - myQuestions[a].timestamp)
   }
 

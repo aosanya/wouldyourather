@@ -13,10 +13,7 @@ export default function questions (state = {}, action) {
       ...action.questions
     }
     case ADD_REPLY :
-    return {
-      ...state,
-      ...action.questions
-    }
+     return state
     default :
       return state
   }

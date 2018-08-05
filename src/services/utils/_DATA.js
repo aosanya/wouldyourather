@@ -1,104 +1,203 @@
-export let users = {
-    sarah_edo: {
-      id: "sarah_edo",
-      name: "Sarah Drasner",
+let users = {
+    sarahedo: {
+      id: 'sarahedo',
+      name: 'Sarah Edo',
       avatarURL: "https://tylermcginnis.com/would-you-rather/sarah.jpg",
-      questions: ['4808c5c8-8e49-4f9a-bfd1-96f3a8b2e447', 'bf2cd792-9e11-4dd3-ae01-42f66d142362', 'd8410323-2730-4b67-8ecc-d3ff6e2fa361', ],
+      answers: {
+        "8xf0y6ziyjabvozdd253nd": 'optionOne',
+        "6ni6ok3ym7mf1p33lnez": 'optionOne',
+        "am8ehyc8byjqgar0jgpub9": 'optionTwo',
+        "loxhs1bqm25b708cmbf3g": 'optionTwo'
+      },
+      questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
     },
     tylermcginnis: {
-      id: "tylermcginnis",
-      name: "Tyler McGinnis",
-      avatarURL: "https://tylermcginnis.com/would-you-rather/tyler.jpg",
-      questions: ['d8410323-2730-4b67-8ecc-d3ff6e2fa400', 'd8410323-2730-4b67-8ecc-d3ff6e2fa500'],
+      id: 'tylermcginnis',
+      name: 'Tyler McGinnis',
+      avatarURL: '../../images/tyler.jpg',
+      answers: {
+        "vthrdm985a262al8qx3do": 'optionOne',
+        "xj352vofupe1dqz9emx13r": 'optionTwo',
+      },
+      questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do'],
     },
-    dan_abramov: {
-      id: "dan_abramov",
-      name: "Dan Abramov",
-      avatarURL: "https://tylermcginnis.com/would-you-rather/dan.jpg",
-      questions: [],
+    johndoe: {
+      id: 'johndoe',
+      name: 'John Doe',
+      avatarURL: '../../images/leaf.jpg',
+      answers: {
+        "xj352vofupe1dqz9emx13r": 'optionOne',
+        "vthrdm985a262al8qx3do": 'optionTwo',
+        "6ni6ok3ym7mf1p33lnez": 'optionOne'
+      },
+      questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r'],
     }
   }
 
-export let questions = {
-    "4808c5c8-8e49-4f9a-bfd1-96f3a8b2e447": {
-        id: "4808c5c8-8e49-4f9a-bfd1-96f3a8b2e447",
-        author: "sarah_edo",
-        options: [{id : "4808c5c8-8e49-4f9a-bfd1-96f3a8b2e441" , option : "drive a Hydrogen powered car"},
-                  {id : "4808c5c8-8e49-4f9a-bfd1-96f3a8b2e442" , option : "drive an Electric powered car"}],
-        timestamp: 1518122597860,
-        replies: {tylermcginnis: "4808c5c8-8e49-4f9a-bfd1-96f3a8b2e441", dan_abramov : "4808c5c8-8e49-4f9a-bfd1-96f3a8b2e442"},
+  let questions = {
+    "8xf0y6ziyjabvozdd253nd": {
+      id: '8xf0y6ziyjabvozdd253nd',
+      author: 'sarahedo',
+      timestamp: 1467166872634,
+      optionOne: {
+        votes: ['sarahedo'],
+        text: 'have horrible short term memory',
+      },
+      optionTwo: {
+        votes: [],
+        text: 'have horrible long term memory'
+      }
     },
-    "bf2cd792-9e11-4dd3-ae01-42f66d142362": {
-        id: "bf2cd792-9e11-4dd3-ae01-42f66d142362",
-        author: "sarah_edo",
-        options: [{id : "bf2cd792-9e11-4dd3-ae01-42f66d142363" , option : "drive a BMW"},
-                  {id : "bf2cd792-9e11-4dd3-ae01-42f66d142364" , option : "drive a Mercedes"}],
-        timestamp: 1518122597861,
-        replies: {tylermcginnis:"bf2cd792-9e11-4dd3-ae01-42f66d142363", dan_abramov : "bf2cd792-9e11-4dd3-ae01-42f66d142364"},
+    "6ni6ok3ym7mf1p33lnez": {
+      id: '6ni6ok3ym7mf1p33lnez',
+      author: 'johndoe',
+      timestamp: 1468479767190,
+      optionOne: {
+        votes: [],
+        text: 'become a superhero',
+      },
+      optionTwo: {
+        votes: ['johndoe', 'sarahedo'],
+        text: 'become a supervillian'
+      }
     },
-    "d8410323-2730-4b67-8ecc-d3ff6e2fa361": {
-        id: "d8410323-2730-4b67-8ecc-d3ff6e2fa361",
-        author: "sarah_edo",
-        options: [{id : "d8410323-2730-4b67-8ecc-d3ff6e2fa363" , option : "use a fully autonomous vehicle"},
-                  {id : "d8410323-2730-4b67-8ecc-d3ff6e2fa364" , option : "use a partially autonomous vehicle"}],
-        timestamp: 1518122597862,
-        replies: { tylermcginnis : "d8410323-2730-4b67-8ecc-d3ff6e2fa363", dan_abramov : "d8410323-2730-4b67-8ecc-d3ff6e2fa364"},
+    "am8ehyc8byjqgar0jgpub9": {
+      id: 'am8ehyc8byjqgar0jgpub9',
+      author: 'sarahedo',
+      timestamp: 1488579767190,
+      optionOne: {
+        votes: [],
+        text: 'be telekinetic',
+      },
+      optionTwo: {
+        votes: ['sarahedo'],
+        text: 'be telepathic'
+      }
     },
-    "d8410323-2730-4b67-8ecc-d3ff6e2fa400": {
-        id: "d8410323-2730-4b67-8ecc-d3ff6e2fa400",
-        author: "tylermcginnis",
-        options: [{id : "d8410323-2730-4b67-8ecc-d3ff6e2fa401" , option : "be 10 minutes early"},
-                  {id : "d8410323-2730-4b67-8ecc-d3ff6e2fa402" , option : "be 5 minutes late"}],
-        timestamp: 1518122597863,
-        replies: [],
+    "loxhs1bqm25b708cmbf3g": {
+      id: 'loxhs1bqm25b708cmbf3g',
+      author: 'tylermcginnis',
+      timestamp: 1482579767190,
+      optionOne: {
+        votes: [],
+        text: 'be a front-end developer',
+      },
+      optionTwo: {
+        votes: ['sarahedo'],
+        text: 'be a back-end developer'
+      }
     },
-    "d8410323-2730-4b67-8ecc-d3ff6e2fa500": {
-        id: "d8410323-2730-4b67-8ecc-d3ff6e2fa500",
-        author: "tylermcginnis",
-        options: [{id : "d8410323-2730-4b67-8ecc-d3ff6e2fa501" , option : "have a good short term memory"},
-                  {id : "d8410323-2730-4b67-8ecc-d3ff6e2fa502" , option : "have a good long term memory"}],
-        timestamp: 1518122597864,
-        replies: [],
+    "vthrdm985a262al8qx3do": {
+      id: 'vthrdm985a262al8qx3do',
+      author: 'tylermcginnis',
+      timestamp: 1489579767190,
+      optionOne: {
+        votes: ['tylermcginnis'],
+        text: 'find $50 yourself',
+      },
+      optionTwo: {
+        votes: ['johndoe'],
+        text: 'have your best friend find $500'
+      }
     },
-}
-
-
-function generateUID () {
-    const uuidv4 = require('uuid/v4')
-    return uuidv4()
+    "xj352vofupe1dqz9emx13r": {
+      id: 'xj352vofupe1dqz9emx13r',
+      author: 'johndoe',
+      timestamp: 1493579767190,
+      optionOne: {
+        votes: ['johndoe'],
+        text: 'write JavaScript',
+      },
+      optionTwo: {
+        votes: ['tylermcginnis'],
+        text: 'write Swift'
+      }
+    },
   }
 
+  function generateUID () {
+    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  }
 
-function formatNewQuestion ({ option1, option2, authorKey }) {
-    return {
-        id: generateUID(),
-        author : authorKey,
-        options: [{id : generateUID(), option : option1}, {id : generateUID(), option : option2}],
-        timestamp: Date.now(),
-        replies : [],
-
-    }
-}
-
-
-export function _saveQuestion ({ option1, option2, author }) {
-    const authorKey = author.split('"').join('')
-
+  export function _getUsers () {
     return new Promise((res, rej) => {
-        const formattedQuestion = formatNewQuestion({ option1, option2, authorKey })
+      setTimeout(() => res({...users}), 1000)
+    })
+  }
+
+  export function _getQuestions () {
+    return new Promise((res, rej) => {
+      setTimeout(() => res({...questions}), 1000)
+    })
+  }
+
+  function formatQuestion ({ optionOneText, optionTwoText, author }) {
+    return {
+      id: generateUID(),
+      timestamp: Date.now(),
+      author,
+      optionOne: {
+        votes: [],
+        text: optionOneText,
+      },
+      optionTwo: {
+        votes: [],
+        text: optionTwoText,
+      }
+    }
+  }
+
+  export function _saveQuestion (question) {
+    return new Promise((res, rej) => {
+      const authedUser = question.author;
+      const formattedQuestion = formatQuestion(question)
+
+      setTimeout(() => {
         questions = {
-            ...questions,
-            [formattedQuestion.id]: formattedQuestion,
+          ...questions,
+          [formattedQuestion.id]: formattedQuestion
         }
 
         users = {
-            ...users,
-            [authorKey]: {
-            ...users[authorKey],
-            questions: users[authorKey].questions.concat([formattedQuestion.id])
-            }
+          ...users,
+          [authedUser]: {
+            ...users[authedUser],
+            questions: users[authedUser].questions.concat([formattedQuestion.id])
+          }
         }
 
-        res({...questions})
+        res(formattedQuestion)
+      }, 1000)
+    })
+  }
+
+  export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+    return new Promise((res, rej) => {
+
+      setTimeout(() => {
+        users = {
+          ...users,
+          [authedUser]: {
+            ...users[authedUser],
+            answers: {
+              ...users[authedUser].answers,
+              [qid]: answer
+            }
+          }
+        }
+
+        questions = {
+          ...questions,
+          [qid]: {
+            ...questions[qid],
+            [answer]: {
+              ...questions[qid][answer],
+              votes: questions[qid][answer].votes.concat([authedUser])
+            }
+          }
+        }
+
+        res()
+      }, 500)
     })
   }
