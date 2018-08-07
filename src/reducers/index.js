@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux'
 import questions from '../services/poll/questions/reducer'
-import users from './security'
+import users from '../services/users/reducer'
 import authedUser from '../services/session/reducer'
 import leaderBoard from '../services/poll/leaderBoard/reducer'
-import myQuestions from '../services/poll/myQuestions/reducer'
 import { LOG_OUT } from '../actions/logout'
 
 const appReducer = combineReducers({
   authedUser,
   leaderBoard,
   questions,
-  //myQuestions,
   users,
 })
 

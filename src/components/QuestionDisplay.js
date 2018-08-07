@@ -1,17 +1,16 @@
 import React, { PureComponent } from 'react'
-
-import { Link } from 'react-router-dom'
 import OptionDisplay from './OptionDisplay'
-
+import { connect } from 'react-redux'
+import { formatQuestion } from '../services/utils/helpers'
+import { Link, withRouter } from 'react-router-dom'
 
 class QuestionDisplay extends PureComponent {
-
   render() {
     const { question } = this.props
     const {optionOne, optionTwo} = question
 
     return (
-      <Link to={`/Question/${question.id}`} className='questiondisplay'>
+      <Link to={`/questions/${question.id}`}>
         <div className='question'>
             <div className='question-info'>
               Would You Rather :
@@ -21,9 +20,19 @@ class QuestionDisplay extends PureComponent {
               </div>
             </div>
         </div>
-      </Link>
+        </Link>
     )
   }
 }
 
-export default QuestionDisplay
+function mapStateToProps ({questions}, { question_id }) {
+
+  const question = questions[question_id]
+  return {
+    question: question
+      ? formatQuestion(question)
+      : null
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(QuestionDisplay))

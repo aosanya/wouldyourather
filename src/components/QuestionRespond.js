@@ -14,23 +14,25 @@ class QuestionRespond extends Component {
       return <p>This Question doesn't exist</p>
     }
 
-
     const {optionOne, optionTwo} = question
 
     return (
-        <div className='question'>
+      <Link to={`/questions/${question.id}`}>
+        <div className='panel roundedBorder'>
             <div className='question-info'>
               Would You Rather :
               <OptionRespond key='optionOne' question = {question} id='optionOne' option={optionOne}/>
               <OptionRespond key='optionTwo' question = {question} id='optionTwo' option={optionTwo}/>
             </div>
         </div>
+      </Link>
     )
   }
 }
 
-function mapStateToProps ({questions}, { question }) {
+function mapStateToProps ({questions}, { question_id }) {
 
+  const question = questions[question_id]
   return {
     question: question
       ? formatQuestion(question)

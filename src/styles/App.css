@@ -29,9 +29,29 @@
     padding: 0;
 }
 
+.siteHeader {
+    background: #fff;
+    background-color: rgb(255, 255, 255);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    z-index: 800;
+    font-size: 14px;
+    color: #555;
+    border-top: 2px solid #111e6c;
+    border-bottom: 1px solid #ddd;
+    box-shadow: 0 3px 2px -2px rgba(200,200,200,0.2);
+}
+
 #page-content-wrapper {
     padding-left: 0;
     margin-left: 0;
+    margin-top: 55px;
     width: 100%;
     height: auto;
 }

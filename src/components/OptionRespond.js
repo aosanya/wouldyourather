@@ -35,13 +35,9 @@ class OptionRespond extends Component {
 }
 
 function mapStateToProps ({authedUser, questions}, { question, option , id }) {
-
     const authedUserId = authedUser.split('"').join('')
     let isSelected =  questions[question.id][id].votes.includes(authedUser)
     let isAnswered =  questions[question.id].optionOne['votes'].includes(authedUserId) || questions[question.id].optionTwo['votes'].includes(authedUserId)
-
-    console.log(isSelected)
-    console.log(isAnswered)
 
     return {
         option: option ? option : null,

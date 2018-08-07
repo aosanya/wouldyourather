@@ -2,23 +2,96 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: #fff
 }
+
+
 
 li {
   list-style-type: none;
   text-decoration: none;
 }
 
-.question {
+.panel {
   width: 100%;
   max-width: 590px;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   margin: 10px auto;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.tabPanel {
+  width: 100%;
+  max-width: 590px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px auto;
+  cursor: pointer;
+  justify-content: center;
+}
+
+#tabs {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px auto;
+  cursor: pointer;
+  justify-content: center;
+}
+
+#tabs button{
+  background-color:#fff;
+  border:none;
+}
+
+#tabs div.selected{
+  font-size : 1.1em;
   border: 1px solid #dad7d7;
   border-radius: 3px;
-  cursor: pointer;
+  padding: 10px;
+  justify-content: center;
 }
+
+#tabs div.unselected{
+  font-size : 1em;
+  padding: 10px;
+  justify-content: center;
+}
+
+
+.tabContent {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  margin: 10px auto;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.info {
+  padding: 10px;
+  justify-content: center;
+}
+
+.right {
+  float: right;
+}
+
+.emphasis {
+  font-size: 1.1em
+}
+
+.roundedBorder {
+  border: 1px solid #dad7d7;
+  border-radius: 3px;
+}
+
 
 .question-info {
   font-size: 15px;
@@ -174,3 +247,4 @@ li {
   font-weight: 700;
   border-width: 2px;
 }
+

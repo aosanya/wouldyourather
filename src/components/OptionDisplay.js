@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 class OptionDisplay extends Component {
 
   render() {
@@ -17,4 +19,16 @@ class OptionDisplay extends Component {
 
 
 
-export default OptionDisplay
+function mapStateToProps ({authedUser, questions}, { question, option , id }) {
+  const authedUserId = authedUser.split('"').join('')
+  let isSelected =  questions[question.id][id].votes.includes(authedUser)
+  let isAnswered =  questions[question.id].optionOne['votes'].includes(authedUserId) || questions[question.id].optionTwo['votes'].includes(authedUserId)
+
+  return {
+      option: option ? option : null,
+      isSelected : isSelected,
+      isAnswered : isAnswered,
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(OptionDisplay))

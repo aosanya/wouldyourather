@@ -1,24 +1,20 @@
-// import { getAuthedUser } from './actions'
+import { setAuthedUser, getAuthedUser } from './actions'
 
-// function _getCurrentUser () {
+function AuthedUser(){
+    const storageValue = sessionStorage.getItem('AuthedUser')
+    const authedId= storageValue.split('"').join('')
+    return authedId
+}
 
-// }  const authedUserIdString = localStorage.getItem('user') || ''
-//   const authedUserId = authedUserIdString.split('"').join('')
-//   return new Promise((res, rej) => { authedUserId })
-// }
+export function handleSetAuthedUser (userId) {
+    sessionStorage.setItem('AuthedUser', userId);
+    return (dispatch) => {
+        return dispatch(setAuthedUser(AuthedUser()))
+    }
+}
 
-// function getCurrentUser(){
-//   return Promise.all([
-//     _getCurrentUser(),
-//   ]).then(([id, name]) => ({
-//     id, name,
-//   }))
-// }
-
-// export function handleAuthedUser () {
-//  return (dispatch) => {
-//     return getCurrentUser()
-//       .then(({id, name}) => {
-//         dispatch(setAuthedUser({id, name}))
-//       })
-//   }
+export function handleGetAuthedUser () {
+ return (dispatch) => {
+    return dispatch(getAuthedUser(AuthedUser()))
+  }
+}

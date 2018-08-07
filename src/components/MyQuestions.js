@@ -16,7 +16,7 @@ class MyQuestions extends Component {
                 'Loading My Questions...' :
                 (myQuestions.map((question) => (
                   <li key={question.id}>
-                    <QuestionDisplay question={question}/>
+                    <QuestionDisplay question_id={question.id}/>
                   </li>
                 )))
               }

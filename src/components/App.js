@@ -5,14 +5,16 @@ import { BrowserRouter as Router,
         Route,
         Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
-//App Actions
-import { handleGetQuestions } from '../services/poll/questions/api'
-//End App Actions
+//App Handlers
+import { handleInitialData } from '../services/api'
+import { handleGetAuthedUser } from '../services/session/api'
+//End App Handlers
 //App Components
 import Login from './Login'
 import LogOut from './LogOut'
 import Home from './Home'
 import MyQuestions from './MyQuestions'
+import Question from './Question'
 import AddQuestion from './AddQuestion'
 import LeaderBoard from './LeaderBoard'
 //End App Components
@@ -24,30 +26,27 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(handleGetQuestions())
+    this.props.dispatch(handleGetAuthedUser())
+    this.props.dispatch(handleInitialData())
   }
 
   toggleMenu = (e, id) => {
     e.preventDefault()
-    //this.props.history.push(`/tweet/${id}`)
-    console.log('toggle Menu')
   }
 
-
   render() {
-    const {isLoading, isAuthenticated, authedUserId} = this.props
-    console.log(this.props)
+    const {loading, isAuthenticated, authedUserId} = this.props
     const PrivateRoute = ({isAuthenticated, component: Component, ...rest }) => (
       <Route
         {...rest}
-        render={props =>
+        render={({ history: { location }, match }) =>
           isAuthenticated ? (
-            <Component {...props} />
+            <Component {...this.props} match = {match}/>
           ) : (
             <Redirect
               to={{
                 pathname: "/login",
-                state: { from: props.location }
+                state: { from: location }
               }}
             />
           )
@@ -55,24 +54,26 @@ class App extends Component {
       />
     );
 
-
     return (
-      <Fragment>
         <Router>
             <Fragment>
               <Route path='/login' exact component={Login} />
               <Route path='/logout' component={LogOut} />
-              <PrivateRoute path='/' exact isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Home} />
-              <PrivateRoute path='/myquestions' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={MyQuestions} />
-              <PrivateRoute path='/add' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={AddQuestion} />
-              <PrivateRoute path='/leaderboard' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={LeaderBoard} />
+              {this.props.loading === true
+              ? null
+              : <div>
+                  <PrivateRoute path='/' exact isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Home} />
+                  <PrivateRoute path='/myquestions' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={MyQuestions} />
+                  <PrivateRoute path='/questions/:question_id' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Question} />
+                  <PrivateRoute path='/add' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={AddQuestion} />
+                  <PrivateRoute path='/leaderboard' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={LeaderBoard} />
+                </div>
+              }
             </Fragment>
         </Router>
-      </Fragment>
     )
   }
 }
-
 
 function mapStateToProps ({ authedUser }) {
   var isAuthenticated = false
@@ -82,6 +83,7 @@ function mapStateToProps ({ authedUser }) {
     authedUserId = authedUser
   }
   return {
+    loading : authedUser === null,
     isAuthenticated : isAuthenticated,
     authedUserId : authedUserId,
   }

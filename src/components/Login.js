@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 //App Actions
-import { handleUsers } from '../actions/shared'
-import { setAuthedUser } from '../services/session/actions'
+import { handleGetUsers } from '../services/users/api'
+import { handleSetAuthedUser } from '../services/session/api'
 //End App Actions
 import './../styles/public.css';
 
@@ -10,21 +10,18 @@ class Login extends Component {
 
 
   componentDidMount() {
-      this.props.dispatch(handleUsers())
+      this.props.dispatch(handleGetUsers())
   }
 
   onChange = (event) => {
-    //console.log(this.props.location.state)
-    //localStorage.setItem('user', JSON.stringify(event.target.value))
-    //const AuthedUserId = localStorage.getItem('user')
-    //key = userId.split('"').join('')
-    this.props.dispatch(setAuthedUser(event.target.value))
-    this.props.history.push('/')
+    this.props.dispatch(handleSetAuthedUser(event.target.value))
+    console.log(this.props)
+    const to = this.props.location.state !== undefined && this.props.location.state.from !== undefined ? this.props.location.state.from.pathname : '/'
+    this.props.history.push(to)
   }
 
   render() {
     const { loading, userIds } = this.props
-
 
     return (
         <Fragment>
