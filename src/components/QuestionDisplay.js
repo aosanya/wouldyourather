@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import OptionDisplay from './OptionDisplay'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../services/utils/helpers'
@@ -6,33 +6,20 @@ import { Link, withRouter } from 'react-router-dom'
 
 class QuestionDisplay extends PureComponent {
   render() {
-    const { question } = this.props
-    const {optionOne, optionTwo} = question
-
+    const { formatedQuestion } = this.props
     return (
-      <Link to={`/questions/${question.id}`}>
+      <Link to={`/questions/${formatedQuestion.id}`}>
         <div className='question'>
             <div className='question-info'>
               Would You Rather :
               <div className="options-stats">
-                <OptionDisplay key='optionOne' question = {question} id='optionOne' option={optionOne}/>
-                <OptionDisplay key='optionTwo' question = {question} id='optionTwo' option={optionTwo}/>
+                <OptionDisplay key='optionOne' question = {formatedQuestion} id='optionOne' option={formatedQuestion.optionOne}/>
+                <OptionDisplay key='optionTwo' question = {formatedQuestion} id='optionTwo' option={formatedQuestion.optionTwo}/>
               </div>
             </div>
         </div>
-        </Link>
+      </Link>
     )
   }
 }
-
-function mapStateToProps ({questions}, { question_id }) {
-
-  const question = questions[question_id]
-  return {
-    question: question
-      ? formatQuestion(question)
-      : null
-  }
-}
-
-export default withRouter(connect(mapStateToProps)(QuestionDisplay))
+export default QuestionDisplay

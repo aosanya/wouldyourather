@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionRespond from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
+import {formatQuestion}  from '../services/utils/helpers'
 
 class Home extends Component {
   state = {
@@ -21,12 +22,13 @@ class Home extends Component {
   }
 
   render() {
-    const { answeredQuestions, unAnsweredQuestions } =  this.props
+    const { answeredQuestions, unAnsweredQuestions, loading } =  this.props
     const questionsToDisplay = this.state.showingAnswered ? answeredQuestions : unAnsweredQuestions
 
     return (
       <ContentWrapper>
-
+        {loading ? null
+        :
         <div className="panel">
 
             <div id="tabs">
@@ -47,27 +49,41 @@ class Home extends Component {
                 <ul>
                   {questionsToDisplay.map((question) => (
                       <li key={question.id}>
-                          <QuestionRespond question_id={question.id}/>
+                          <QuestionRespond formatedQuestion={question}/>
                       </li>
                     ))}
                 </ul>
               )
             }
         </div>
+        }
       </ContentWrapper>
     )
   }
 }
 
-function mapStateToProps ({ questions , authedUser }) {
-  const answeredQuestions = Object.values(questions).filter((q) => q.optionOne['votes'].includes(authedUser) || q.optionTwo['votes'].includes(authedUser))
-  const unAnsweredQuestions = Object.values(questions).filter((q) => !(q.optionOne['votes'].includes(authedUser)) && !(q.optionTwo['votes'].includes(authedUser)))
-  console.log(answeredQuestions)
+function mapStateToProps ({ questions, users , authedUser, fetchingData }) {
+  var answeredQuestions = undefined
+  var unAnsweredQuestions = undefined
+
+  if (!fetchingData){
+    answeredQuestions = Object.values(questions).filter((q) => q.optionOne['votes'].includes(authedUser) || q.optionTwo['votes'].includes(authedUser))
+    unAnsweredQuestions = Object.values(questions).filter((q) => !(q.optionOne['votes'].includes(authedUser)) && !(q.optionTwo['votes'].includes(authedUser)))
+    //Formating
+    answeredQuestions = answeredQuestions.map((a) => formatQuestion(a, users[a.author], authedUser))
+    unAnsweredQuestions = unAnsweredQuestions.map((a) => formatQuestion(a, users[a.author], authedUser))
+    //Sorting
+    answeredQuestions = answeredQuestions.sort((a,b) => b.timestamp - a.timestamp)
+    unAnsweredQuestions = unAnsweredQuestions.sort((a,b) => b.timestamp - a.timestamp)
+
+  }
+
   return {
+    loading : fetchingData,
     questionIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
-    answeredQuestions: answeredQuestions.sort((a,b) => b.timestamp - a.timestamp),
-    unAnsweredQuestions: unAnsweredQuestions.sort((a,b) => b.timestamp - a.timestamp),
+    answeredQuestions: answeredQuestions,
+    unAnsweredQuestions: unAnsweredQuestions,
   }
 }
 

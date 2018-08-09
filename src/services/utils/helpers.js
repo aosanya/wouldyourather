@@ -4,15 +4,20 @@ export function formatDate (timestamp) {
     return time.substr(0, 5) + time.slice(-2) + ' | ' + d.toLocaleDateString()
   }
 
-export function formatQuestion (question) {
-    const { id, author , timestamp, optionOne, optionTwo } = question
+export function formatQuestion (question, user, authedUser) {
+    if (user === undefined) return undefined
 
+    const { id, author , timestamp, optionOne, optionTwo } = question
+    const { name, avatarURL } = user
     return {
+      name,
       id,
       author,
-      timestamp,
       optionOne,
-      optionTwo
+      optionTwo,
+      avatar : avatarURL,
+      timestamp,
+      hasResponded : optionOne['votes'].includes(authedUser) || optionTwo['votes'].includes(authedUser),
     }
 }
 

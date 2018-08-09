@@ -1,34 +1,46 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import QuestionDisplay from './QuestionRespond'
+import QuestionDisplay from './QuestionDisplay'
+import {formatQuestion, formatDate}  from '../services/utils/helpers'
 import ContentWrapper from './ContentWrapper'
 
 class Question extends Component {
   render() {
-    const { question_id } = this.props
-
+    const { loading, question_id, question } = this.props
+    console.log(question)
     return (
       <ContentWrapper>
-        <div className="panel">
-          <img
-            src={avatar}
-            alt={`Avatar of ${name}`}
-            className='avatar'
-          />
-            Testing { question_id }
-        </div>
+        {
+          loading ? null
+          :
+            <div className="panel">
+              <div>
+                <img
+                  src={question.avatar}
+                  alt={`Avatar of ${question.name}`}
+                  className='avatar'
+                />
+                <span>{question.name} <span className="subInfo">@{formatDate(question.timestamp)}</span></span>
+              </div>
+              <QuestionDisplay formatedQuestion={question}/>
+            </div>
+        }
       </ContentWrapper>
     )
   }
 }
 
-function mapStateToProps ({ users, questions }, props) {
+function mapStateToProps ({ users, questions, authedUser, fetchingData }, props) {
   const { question_id } = props.match.params
-  const question = questions[question_id]
-  const user = users[question.author]
+  const question = !fetchingData ? questions[question_id] : undefined
+  const user = !fetchingData ? users[question.author] : undefined
+  const formatedQuestion = !fetchingData ? formatQuestion(question, user, authedUser) : undefined
+
+  console.log(formatedQuestion)
   return {
     question_id,
-    question : question,
+    question : formatedQuestion,
+    loading : fetchingData,
     user : user,
   }
 }

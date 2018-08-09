@@ -115,6 +115,8 @@ li {
 .question-option {
   color : #002147;
   font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  flex-direction: row;
   font-size: 14px;
   color: #555;
   width: 100%;
@@ -139,6 +141,9 @@ li {
 
  }
 
+ .option-details{
+   width : 100%;
+ }
  .checked{
    background-color: #66ffb2;
  }
@@ -147,19 +152,13 @@ li {
   background-color: #ff9999;
  }
 
+ .question-text {
+  width : 100%;
+}
+
  .question-vote {
-  padding: 7px 12px;
-  left:-7px;
-  width:300px;
-  position: relative;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1;
-  color: #555;
-  text-align: center;
-  background-color: #ccc;
-  border: 1px solid #ccc;
-  border-radius: 4px 0px 0px 4px;
+  color: #969696;
+  margin: 3px;
 }
 
 .rTable { display: table; }
@@ -178,6 +177,14 @@ li {
   height: 50px;
   border-radius: 25px;
   margin: 10px;
+}
+
+.avatar_small {
+  height: 40px;
+  border-radius: 20px;
+  margin: 1px;
+  position: relative;
+  right : 20px;
 }
 
 .contentBox {
@@ -248,3 +255,7 @@ li {
   border-width: 2px;
 }
 
+.subInfo{
+  font-size: 0.8em;
+  color: #969696;
+}

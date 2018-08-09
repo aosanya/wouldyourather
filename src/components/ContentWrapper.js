@@ -34,9 +34,7 @@ class ContentWrapper extends Component {
 }
 
 function mapStateToProps ({ authedUser, users }) {
-  console.log(users)
   const user = users[authedUser]
-  console.log(user)
   return {
     loading : user === undefined ,
     user : user,
