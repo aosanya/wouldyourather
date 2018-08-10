@@ -1,29 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionDisplay from './QuestionDisplay'
-import {formatQuestion, formatDate}  from '../services/utils/helpers'
+import QuestionInfo from './QuestionInfo'
+
+import Error404Private from './Error404Private'
+import { formatQuestion }  from '../services/utils/helpers'
 import ContentWrapper from './ContentWrapper'
 
 class Question extends Component {
   render() {
-    const { loading, question_id, question } = this.props
-    console.log(question)
+    const { loading, question, noMatch } = this.props
+    console.log(noMatch)
     return (
       <ContentWrapper>
         {
           loading ? null
           :
-            <div className="panel">
-              <div>
-                <img
-                  src={question.avatar}
-                  alt={`Avatar of ${question.name}`}
-                  className='avatar'
-                />
-                <span>{question.name} <span className="subInfo">@{formatDate(question.timestamp)}</span></span>
+            noMatch ? <Error404Private info='This poll does not exist'/>
+            :
+              <div className="panel roundedBorder">
+                <QuestionInfo question={question}/>
+                <QuestionDisplay formatedQuestion={question}/>
               </div>
-              <QuestionDisplay formatedQuestion={question}/>
-            </div>
         }
       </ContentWrapper>
     )
@@ -33,15 +31,22 @@ class Question extends Component {
 function mapStateToProps ({ users, questions, authedUser, fetchingData }, props) {
   const { question_id } = props.match.params
   const question = !fetchingData ? questions[question_id] : undefined
-  const user = !fetchingData ? users[question.author] : undefined
-  const formatedQuestion = !fetchingData ? formatQuestion(question, user, authedUser) : undefined
+  var user = undefined
+  var formatedQuestion = undefined
 
-  console.log(formatedQuestion)
+  if (question !== undefined){
+    user = !fetchingData ? users[question.author] : undefined
+    formatedQuestion = !fetchingData ? formatQuestion(question, user, authedUser) : undefined
+  }
+
+  const noMatch = fetchingData === false && question === undefined ? true : false
+
   return {
     question_id,
     question : formatedQuestion,
     loading : fetchingData,
     user : user,
+    noMatch : noMatch,
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import QuestionRespond from './QuestionDisplay'
+import QuestionRespond from './QuestionRespond'
+import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
 import {formatQuestion}  from '../services/utils/helpers'
 
@@ -49,7 +50,10 @@ class Home extends Component {
                 <ul>
                   {questionsToDisplay.map((question) => (
                       <li key={question.id}>
-                          <QuestionRespond formatedQuestion={question}/>
+                          { this.state.showingAnswered
+                            ? <QuestionDisplay formatedQuestion={question}/>
+                            : <QuestionRespond formatedQuestion={question}/>
+                          }
                       </li>
                     ))}
                 </ul>

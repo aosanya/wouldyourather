@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 import ContentWrapper from './ContentWrapper'
-import { handleAddQuestion } from '../services/poll/questions/api'
-import { handleGetMyQuestions } from '../services/poll/myQuestions/api'
+import { handleAddQuestion, handleGetQuestions } from '../services/poll/questions/api'
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 class AddQuestion extends Component {
   state = {
     option1: '',
     option2: '',
-
   }
 
   handleChange = (e) => {
@@ -33,15 +30,14 @@ class AddQuestion extends Component {
     }))
 
     NotificationManager.success('', 'Poll question added successfully')
-    this.props.dispatch(handleGetMyQuestions(this.props.authedUserId))
+    this.props.dispatch(handleGetQuestions(this.props.authedUserId))
   }
 
   render() {
-    const { option1, option2, toHome } = this.state
+    const { option1, option2} = this.state
 
     const option1Left = 280 - option1.length
     const option2Left = 280 - option2.length
-    console.log(this.props)
     return (
         <ContentWrapper>
             <div className='contentBox'>

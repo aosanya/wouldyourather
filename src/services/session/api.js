@@ -2,6 +2,7 @@ import { setAuthedUser, getAuthedUser } from './actions'
 
 function AuthedUser(){
     const storageValue = sessionStorage.getItem('AuthedUser')
+    if (storageValue === 'null') return ''
     const authedId= storageValue.split('"').join('')
     return authedId
 }

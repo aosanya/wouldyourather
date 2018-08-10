@@ -16,7 +16,7 @@ class LeaderBoard extends Component {
   }
 
   render() {
-    const {hasBoard, leaderBoard} = this.props
+    const { leaderBoard } = this.props
     return (
       <ContentWrapper>
         <div className='contentBox'>

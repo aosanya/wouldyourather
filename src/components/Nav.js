@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { handleGetMyQuestions } from '../services/poll/myQuestions/api'
 
 class Nav extends Component {
 
@@ -16,6 +15,9 @@ class Nav extends Component {
         <ul className="sidebar-nav" id="sidebar">
           <li className="sidebar-item" >
             <Link to={`/`}>Home<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+          </li>
+          <li className="sidebar-item" >
+            <Link to={`/vote`}>Vote<span className="sub_icon glyphicon glyphicon-link"></span></Link>
           </li>
           <li className="sidebar-item" >
             <Link to={`/myquestions`}>My Questions{myQuestionsCount}<span className="sub_icon glyphicon glyphicon-link"></span></Link>

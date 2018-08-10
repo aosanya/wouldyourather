@@ -127,18 +127,9 @@ li {
 }
 
 .question-checkbox {
-    padding: 7px 12px;
-    left:-7px;
     position: relative;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-    color: #555;
-    text-align: center;
-    background-color: #87CEFA;
-    border: 1px solid #ccc;
-    border-radius: 4px 0px 0px 4px;
-
+    top: -1px;
+    margin: 0 10px 0px 5px;
  }
 
  .option-details{
@@ -223,7 +214,7 @@ li {
   font-size: 14px;
   font-weight: 400;
   line-height: 1;
-  border-radius: 0px 4px 4px 0px;
+  border-radius: 0 4px 4px 0;
 }
 
 .leaderBoard-info {

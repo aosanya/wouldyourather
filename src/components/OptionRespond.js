@@ -17,14 +17,13 @@ class OptionRespond extends Component {
   render() {
     const  {option, isSelected, isAnswered }  = this.props
     const checkboxValue = isSelected ? 'checked' : ''
-    const checkboxStlye = !isSelected && isAnswered ? 'unchecked' : checkboxValue
     if (option === null) {
       return <p>Unable to find this option</p>
     }
 
     return (
         <div className='question-option' >
-          <span className={`question-checkbox ${checkboxStlye}`}>
+          <span className='question-checkbox'>
             <input  type='checkbox' defaultChecked={checkboxValue} disabled={isAnswered} onChange={this.handleChange.bind(this)}></input>
           </span>
           {option.text}

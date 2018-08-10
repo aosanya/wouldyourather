@@ -1,18 +1,21 @@
 import './../styles/App.css';
 import 'react-notifications/lib/notifications.css';
 import React, { Component, Fragment } from 'react'
+import { Switch } from 'react-router'
 import { BrowserRouter as Router,
         Route,
         Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
 //App Handlers
 import { handleInitialData } from '../services/api'
-import { handleGetAuthedUser } from '../services/session/api'
 //End App Handlers
 //App Components
+import Error404 from './Error404'
+import Error404Private from './Error404Private'
 import Login from './Login'
 import LogOut from './LogOut'
 import Home from './Home'
+import Vote from './Vote'
 import MyQuestions from './MyQuestions'
 import Question from './Question'
 import AddQuestion from './AddQuestion'
@@ -26,7 +29,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(handleGetAuthedUser())
     this.props.dispatch(handleInitialData())
   }
 
@@ -57,33 +59,34 @@ class App extends Component {
     return (
         <Router>
             <Fragment>
-              <Route path='/login' exact component={Login} />
-              <Route path='/logout' component={LogOut} />
-              {this.props.loading === true
-              ? null
-              : <div>
+                { loading ? null :
+                 <Switch>
+                  <Route path='/login' component={Login} />
+                  <Route path='/logout' component={LogOut} />
                   <PrivateRoute path='/' exact isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Home} />
+                  <PrivateRoute path='/vote' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Vote} />
                   <PrivateRoute path='/myquestions' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={MyQuestions} />
                   <PrivateRoute path='/questions/:question_id' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={Question} />
                   <PrivateRoute path='/add' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={AddQuestion} />
                   <PrivateRoute path='/leaderboard' isAuthenticated={isAuthenticated} authedUserId={authedUserId} component={LeaderBoard} />
-                </div>
-              }
+                  { isAuthenticated ? <Route component={Error404Private}/> : <Route component={Error404}/>}
+                 </Switch>
+                }
             </Fragment>
         </Router>
     )
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser, fetchingData }) {
   var isAuthenticated = false
   var authedUserId = undefined
-  if (authedUser !== null && authedUser != undefined){
-    isAuthenticated = authedUser.AuthedUserId !== ''
+  if (fetchingData === false && authedUser !== undefined && authedUser !== null){
+    isAuthenticated = authedUser !== ''
     authedUserId = authedUser
   }
   return {
-    loading : authedUser === null,
+    loading : fetchingData,
     isAuthenticated : isAuthenticated,
     authedUserId : authedUserId,
   }

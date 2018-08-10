@@ -33,10 +33,10 @@ class ContentWrapper extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, users }) {
+function mapStateToProps ({ authedUser, users, fetchingData }) {
   const user = users[authedUser]
   return {
-    loading : user === undefined ,
+    loading : fetchingData,
     user : user,
   }
 }

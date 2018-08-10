@@ -36,7 +36,7 @@ function mapStateToProps ({authedUser, questions, users}, { question, option , i
 
   let isAnswered =  questions[question.id].optionOne['votes'].includes(authedUserId) || questions[question.id].optionTwo['votes'].includes(authedUserId)
   const totalVotes =  questions[question.id].optionOne['votes'].length + questions[question.id].optionTwo['votes'].length
-  const percentageVotes = (option.votes.length / totalVotes) * 100
+  const percentageVotes = Math.round((option.votes.length / totalVotes) * 100)
   const user = users[authedUserId]
   return {
       option: option ? option : null,

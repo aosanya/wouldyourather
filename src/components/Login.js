@@ -1,13 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-//App Actions
+//App handlers
 import { handleGetUsers } from '../services/users/api'
 import { handleSetAuthedUser } from '../services/session/api'
-//End App Actions
+//End App handlers
 import './../styles/public.css';
 
 class Login extends Component {
-
+  state = {
+    returnUrl: undefined,
+  }
 
   componentDidMount() {
       this.props.dispatch(handleGetUsers())
@@ -15,13 +17,15 @@ class Login extends Component {
 
   onChange = (event) => {
     this.props.dispatch(handleSetAuthedUser(event.target.value))
-    console.log(this.props)
-    const to = this.props.location.state !== undefined && this.props.location.state.from !== undefined ? this.props.location.state.from.pathname : '/'
-    this.props.history.push(to)
   }
 
   render() {
-    const { loading, userIds } = this.props
+    const { loading, userIds, isAuthenticated } = this.props
+
+    if (isAuthenticated) {
+      const to = this.props.location.state !== undefined && this.props.location.state.from !== undefined ? this.props.location.state.from.pathname : '/'
+      this.props.history.push(to)
+    }
 
     return (
         <Fragment>
@@ -45,9 +49,17 @@ class Login extends Component {
   }
 }
 
-function mapStateToProps ({ users }) {
+function mapStateToProps ({ users, authedUser }) {
+  var isAuthenticated = false
+  var authedUserId = undefined
+  if (authedUser !== '' && authedUser !== undefined && authedUser !== null){
+    isAuthenticated = authedUser.AuthedUserId !== ''
+    authedUserId = authedUser
+  }
   return {
     loading : users === null,
+    isAuthenticated : isAuthenticated,
+    authedUserId : authedUserId,
     userIds: Object.keys(users)
       .sort((a,b) => users[b].name - users[a].name)
   }

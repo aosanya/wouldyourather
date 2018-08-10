@@ -4,7 +4,7 @@ import users from '../services/users/reducer'
 import authedUser from '../services/session/reducer'
 import fetchingData from '../services/status/reducer'
 import leaderBoard from '../services/poll/leaderBoard/reducer'
-import { LOG_OUT } from '../actions/logout'
+import { LOG_OUT } from '../services/session/actions'
 
 const appReducer = combineReducers({
   authedUser,
