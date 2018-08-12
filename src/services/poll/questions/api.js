@@ -4,6 +4,7 @@ import {
 
 import {addQuestion, addReply, receiveQuestions} from './actions'
 
+
 export function getQuestions () {
   return Promise.all([
     _getQuestions(),
@@ -30,18 +31,18 @@ function saveQuestion (info) {
   ))
 }
 
-export function handleAddQuestion (option1, option2) {
+export function handleAddQuestion (optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
-    // dispatch(showLoading())
-
 
     return saveQuestion({
-      option1,
-      option2,
+      optionOneText,
+      optionTwoText,
       author: authedUser
     })
-      .then(({questions}) => {dispatch(addQuestion(questions))})
+      .then(() => {
+        dispatch(addQuestion())
+      })
   }
 }
 

@@ -119,7 +119,6 @@ export function _saveQuestion ({ option1, option2, author }) {
             replies : replies
             },
         }
-        console.log(questions)
         res({...questions})
     })
   }

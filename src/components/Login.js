@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 //App handlers
 import { handleGetUsers } from '../services/users/api'
 import { handleSetAuthedUser } from '../services/session/api'
@@ -13,6 +14,9 @@ class Login extends Component {
 
   componentDidMount() {
       this.props.dispatch(handleGetUsers())
+      this.setState(() => ({
+        returnUrl : this.props.location.state !== undefined && this.props.location.state.from !== undefined ? this.props.location.state.from.pathname : '/'
+      }))
   }
 
   onChange = (event) => {
@@ -21,29 +25,33 @@ class Login extends Component {
 
   render() {
     const { loading, userIds, isAuthenticated } = this.props
-
-    if (isAuthenticated) {
-      const to = this.props.location.state !== undefined && this.props.location.state.from !== undefined ? this.props.location.state.from.pathname : '/'
-      this.props.history.push(to)
-    }
-
     return (
-        <Fragment>
-            {loading === true
-            ? `Loading users`
-            :(
-              <div className="login">
-                  <div className="user-select" key="use-select">
-                      <select defaultValue="" onChange={this.onChange}>
-                      <option value="" disabled>Select user...</option>
-                      {userIds.map((user) => (
-                          <option value={user} key={user}>{user}</option>
-                      ))}
-                      </select>
-                  </div>
-              </div>
-            )
-            }
+      <Fragment>
+        { isAuthenticated ?
+            <Redirect
+            to={{
+                pathname: this.state.returnUrl,
+            }}
+            />
+        :
+            <Fragment>
+             ({loading === true
+              ? `Loading users`
+              :(
+                <div className="login">
+                    <div className="user-select" key="use-select">
+                        <select defaultValue="" onChange={this.onChange}>
+                        <option value="" disabled>Select user...</option>
+                        {userIds.map((user) => (
+                            <option value={user} key={user}>{user}</option>
+                        ))}
+                        </select>
+                    </div>
+                </div>
+              )
+              })
+            </Fragment>
+          }
          </Fragment>
     )
   }

@@ -6,7 +6,6 @@ class QuestionRespond extends Component {
 
   render() {
     const { formatedQuestion } = this.props
-    console.log(formatedQuestion)
     return (
         <div className='question-info'>
           Would You Rather?

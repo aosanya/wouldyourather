@@ -1,10 +1,18 @@
-import { FETCHING_DATA } from './actions'
+import { FETCHING_DATA, FETCHED_DATA } from './actions'
 
-export default function users (state = {}, action) {
-
+export function fetchingData (state = {}, action) {
   switch(action.type) {
     case FETCHING_DATA :
       return action.fetchingData
+    default :
+      return state
+  }
+}
+
+export function fetchedData (state = {}, action) {
+  switch(action.type) {
+    case FETCHED_DATA :
+      return action.fetchedData
     default :
       return state
   }

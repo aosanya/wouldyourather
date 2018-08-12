@@ -6,7 +6,7 @@ import {
 import { receiveUsers } from './users/actions'
 import { receiveQuestions } from './poll/questions/actions'
 import { showLoading, hideLoading } from 'react-redux-loading'
-import { fetchingData } from './status/actions'
+import { handleFetchingData, handleFetchedData } from './status/api'
 
 export function getInitialData () {
   return Promise.all([
@@ -21,13 +21,15 @@ export function getInitialData () {
 export function handleInitialData () {
   return (dispatch) => {
     dispatch(showLoading())
-    dispatch(fetchingData(true))
+    dispatch(handleFetchingData(true))
+    dispatch(handleFetchedData(false))
     return getInitialData()
       .then(({ users, questions }) => {
         dispatch(receiveUsers(users))
         dispatch(receiveQuestions(questions))
         dispatch(hideLoading())
-        dispatch(fetchingData(false))
+        dispatch(handleFetchingData(false))
+        dispatch(handleFetchedData(true))
       })
   }
 }

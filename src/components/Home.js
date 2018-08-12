@@ -4,10 +4,17 @@ import QuestionRespond from './QuestionRespond'
 import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
 import {formatQuestion}  from '../services/utils/helpers'
+import { fetchedData } from '../services/status/actions';
 
 class Home extends Component {
   state = {
     showingAnswered: false,
+  }
+
+  componentDidMount(){
+    console.log(this.props.loading)
+    console.log(this.props.answeredQuestions)
+    console.log(this.props.unAnsweredQuestions)
   }
 
   showAnswered = (e) => {
@@ -70,7 +77,10 @@ function mapStateToProps ({ questions, users , authedUser, fetchingData }) {
   var answeredQuestions = undefined
   var unAnsweredQuestions = undefined
 
+  console.log(questions)
+
   if (!fetchingData){
+    console.log(authedUser)
     answeredQuestions = Object.values(questions).filter((q) => q.optionOne['votes'].includes(authedUser) || q.optionTwo['votes'].includes(authedUser))
     unAnsweredQuestions = Object.values(questions).filter((q) => !(q.optionOne['votes'].includes(authedUser)) && !(q.optionTwo['votes'].includes(authedUser)))
     //Formating
@@ -84,6 +94,7 @@ function mapStateToProps ({ questions, users , authedUser, fetchingData }) {
 
   return {
     loading : fetchingData,
+    needsFetching : !fetchingData && !fetchedData === true,
     questionIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     answeredQuestions: answeredQuestions,

@@ -10,7 +10,6 @@ import ContentWrapper from './ContentWrapper'
 class Question extends Component {
   render() {
     const { loading, question, noMatch } = this.props
-    console.log(noMatch)
     return (
       <ContentWrapper>
         {

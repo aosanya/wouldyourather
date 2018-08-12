@@ -1,8 +1,14 @@
 import React, { Component, Fragment  } from 'react'
 import Nav from './Nav'
 import { connect } from 'react-redux'
+import { handleInitialData } from '../services/api'
 
 class ContentWrapper extends Component {
+
+  componentDidMount(){
+    if (this.props.needsFetching) this.props.dispatch(handleInitialData())
+  }
+
   render() {
     const { user } =  this.props
     return (
@@ -13,9 +19,8 @@ class ContentWrapper extends Component {
             <div className="siteHeader">
               <div className="info right">
                 You are logged in as <span className="emphasis">{user.name}</span>
-              </div>
+                </div>
             </div>
-
             <Nav/>
             <div id="page-content-wrapper">
               <div className="page-content inset">
@@ -33,10 +38,11 @@ class ContentWrapper extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser, users, fetchingData }) {
+function mapStateToProps ({ authedUser, users, fetchingData, fetchedData }) {
   const user = users[authedUser]
   return {
     loading : fetchingData,
+    needsFetching : !fetchingData && !fetchedData === true,
     user : user,
   }
 }

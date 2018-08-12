@@ -7,7 +7,6 @@ import {formatQuestion}  from '../services/utils/helpers'
 class MyQuestions extends Component {
   render() {
     const {myQuestions, fetchingData}  = this.props
-    console.log(myQuestions)
     return (
       <ContentWrapper>
         <div className="panel">

@@ -6,3 +6,12 @@ export function fetchingData (fetchingData) {
     fetchingData,
   }
 }
+
+export const FETCHED_DATA = 'FETCHED_DATA'
+
+export function fetchedData (fetchedData) {
+  return {
+    type: FETCHED_DATA,
+    fetchedData,
+  }
+}
