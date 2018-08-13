@@ -152,18 +152,12 @@ let users = {
     return new Promise((res, rej) => {
       const authedUser = question.author;
       const formattedQuestion = formatQuestion(question)
-      console.log(formattedQuestion.optionOne.votes)
-      console.log(formattedQuestion.optionTwo.votes)
-
-
-      console.log(questions)
 
       questions = {
         ...questions,
         [formattedQuestion.id]: formattedQuestion
       }
 
-      console.log(questions)
       setTimeout(() => {
         questions = {
           ...questions,

@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import OptionDisplay from './OptionDisplay'
 
-class QuestionDisplay extends Component {
-  render() {
-    const { formatedQuestion } = this.props
+const QuestionDisplay = (props) => {
+    const { formatedQuestion } = props
+
     return (
       <div className='question-info'>
         Would You Rather?
@@ -14,5 +14,5 @@ class QuestionDisplay extends Component {
       </div>
     )
   }
-}
+
 export default QuestionDisplay

@@ -3,6 +3,7 @@ import Nav from './Nav'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../services/api'
 
+
 class ContentWrapper extends Component {
 
   componentDidMount(){

@@ -1,11 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-class Nav extends Component {
-
-  render() {
-    const  myQuestions   = this.props.myQuestions
+const Nav = (props) =>  {
+    const  myQuestions   = props.myQuestions
     const myQuestionsCount = myQuestions === undefined ? '...' : `(${myQuestions.length})`
     return (
       <div id="sidebar-wrapper">
@@ -34,7 +32,6 @@ class Nav extends Component {
         </ul>
       </div>
     )
-  }
 }
 
 function mapStateToProps ({ questions, authedUser }) {

@@ -6,6 +6,7 @@ import { BrowserRouter as Router,
         Route,
         Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
+import {NotificationContainer} from 'react-notifications';
 //App Handlers
 import { handleInitialData } from '../services/api'
 //End App Handlers
@@ -72,6 +73,7 @@ class App extends Component {
                   { isAuthenticated ? <Route component={Error404Private}/> : <Route component={Error404}/>}
                  </Switch>
                 }
+                <NotificationContainer/>
             </Fragment>
         </Router>
     )

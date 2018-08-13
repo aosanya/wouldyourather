@@ -1,6 +1,14 @@
 # wouldyourather
 Udacity React-Redux Evaluation Project
 
+#Cloning
+To clone this project from github, use the following link:
+https://github.com/aosanya/wouldyourather.git
+
+#Or Download Zip
+To download the project from github, use the following link:
+https://github.com/aosanya/wouldyourather/archive/master.zip
+
 # Installation
 * install all project dependencies with `npm install`
 

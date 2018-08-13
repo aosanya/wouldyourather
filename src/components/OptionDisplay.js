@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-class OptionDisplay extends Component {
-
-  render() {
-    const { question, option, percentageVotes, user, isSelected } = this.props
+const OptionDisplay = (props) => {
+    const { question, option, percentageVotes, user, isSelected } = props
 
     return (
       <div key={`Option${question.id}`} className={`question-option ${isSelected ? `selected` : null}`}>
@@ -13,7 +11,7 @@ class OptionDisplay extends Component {
           <span className='question-vote'>
             {option.votes.length}{option.votes.length === 1 ? ` vote  ` : ` votes`} ({percentageVotes}%)
             <span className='question-selected'>
-                {!isSelected ? null : <span class="glyphicon glyphicon-ok"></span>}
+                {!isSelected ? null : <span className="glyphicon glyphicon-ok"></span>}
             </span>
           </span>
         </div>
@@ -29,7 +27,7 @@ class OptionDisplay extends Component {
         </div>
       </div>
     )
-  }
+
 }
 
 function mapStateToProps ({authedUser, questions, users}, { question, option , id }) {

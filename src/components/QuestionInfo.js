@@ -1,9 +1,8 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { formatDate }  from '../services/utils/helpers'
 
-class QuestionInfo extends PureComponent {
-  render() {
-    const {  question} = this.props
+const QuestionInfo = (props) => {
+    const {  question} = props
     return (
         <div>
             <img
@@ -14,8 +13,6 @@ class QuestionInfo extends PureComponent {
             <span>{question.name} <span className="subInfo">@{formatDate(question.timestamp)}</span></span>
         </div>
     )
-  }
 }
-
 
 export default QuestionInfo

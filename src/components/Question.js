@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import QuestionDisplay from './QuestionDisplay'
 import QuestionRespond from './QuestionRespond'
@@ -8,9 +8,8 @@ import Error404Private from './Error404Private'
 import { formatQuestion }  from '../services/utils/helpers'
 import ContentWrapper from './ContentWrapper'
 
-class Question extends Component {
-  render() {
-    const { loading, question, noMatch } = this.props
+const Question = (props) => {
+    const { loading, question, noMatch } = props
     return (
       <ContentWrapper>
         {
@@ -19,15 +18,15 @@ class Question extends Component {
             noMatch ? <Error404Private info='This poll does not exist'/>
             :
               <div className="panel roundedBorder">
+                <QuestionInfo question={question}/>
                  { question.hasResponded
-                    ? <Fragment><QuestionInfo question={question}/><QuestionDisplay formatedQuestion={question}/></Fragment>
+                    ? <QuestionDisplay formatedQuestion={question}/>
                     : <QuestionRespond formatedQuestion={question}/>
                   }
               </div>
         }
       </ContentWrapper>
     )
-  }
 }
 
 function mapStateToProps ({ users, questions, authedUser, fetchingData }, props) {

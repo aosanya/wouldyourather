@@ -92,7 +92,6 @@ class AddQuestion extends Component {
                         </div>
                     </div>
                 </ContentWrapper>
-
             }
          </Fragment>
     )
@@ -101,8 +100,8 @@ class AddQuestion extends Component {
 
 function mapStateToProps ({authedUser}) {
     return {
-      authedUserId : authedUser
+         authedUserId : authedUser
     }
-  }
+}
 
-  export default connect(mapStateToProps)(AddQuestion)
+export default connect(mapStateToProps)(AddQuestion)

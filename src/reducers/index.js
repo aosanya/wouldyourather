@@ -4,7 +4,6 @@ import users from '../services/users/reducer'
 import authedUser from '../services/session/reducer'
 import {fetchingData, fetchedData} from '../services/status/reducer'
 import leaderBoard from '../services/poll/leaderBoard/reducer'
-import { LOG_OUT } from '../services/session/actions'
 
 const appReducer = combineReducers({
   authedUser,
@@ -16,10 +15,6 @@ const appReducer = combineReducers({
 })
 
 const rootReducer = ( state, action ) => {
-  if ( action.type === LOG_OUT ) {
-    state = undefined;
-  }
-
   return appReducer(state, action)
 }
 

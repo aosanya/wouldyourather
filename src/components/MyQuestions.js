@@ -1,12 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
 import {formatQuestion}  from '../services/utils/helpers'
 
-class MyQuestions extends Component {
-  render() {
-    const {myQuestions, fetchingData}  = this.props
+const MyQuestions = (props) => {
+    const {myQuestions, fetchingData}  = props
     return (
       <ContentWrapper>
         <div className="panel">
@@ -22,7 +21,6 @@ class MyQuestions extends Component {
         </div>
       </ContentWrapper>
     )
-  }
 }
 
 function mapStateToProps ({ authedUser, questions, users, fetchingData }) {

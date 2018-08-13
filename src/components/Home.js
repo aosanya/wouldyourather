@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import QuestionInfo from './QuestionInfo'
 import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
 import {formatQuestion}  from '../services/utils/helpers'
@@ -52,6 +53,7 @@ class Home extends Component {
                 <ul>
                   {questionsToDisplay.map((question) => (
                       <li key={question.id} className="panel roundedBorder">
+                          <QuestionInfo question={question}/>
                           <QuestionDisplay formatedQuestion={question}/>
                           <Link to={`/questions/${question.id}`} className="centered">View Poll</Link>
                       </li>
@@ -70,10 +72,8 @@ function mapStateToProps ({ questions, users , authedUser, fetchingData }) {
   var answeredQuestions = undefined
   var unAnsweredQuestions = undefined
 
-  console.log(questions)
 
   if (!fetchingData){
-    console.log(authedUser)
     answeredQuestions = Object.values(questions).filter((q) => q.optionOne['votes'].includes(authedUser) || q.optionTwo['votes'].includes(authedUser))
     unAnsweredQuestions = Object.values(questions).filter((q) => !(q.optionOne['votes'].includes(authedUser)) && !(q.optionTwo['votes'].includes(authedUser)))
     //Formating
