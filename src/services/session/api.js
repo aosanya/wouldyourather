@@ -1,4 +1,4 @@
-import { setAuthedUser, getAuthedUser } from './actions'
+import { setAuthedUser, getAuthedUser, logOut } from './actions'
 
 function AuthedUser(){
     const storageValue = sessionStorage.getItem('AuthedUser')
@@ -19,3 +19,9 @@ export function handleGetAuthedUser () {
     return dispatch(getAuthedUser(AuthedUser()))
   }
 }
+
+export function handleLogOut () {
+    return (dispatch) => {
+       return dispatch(logOut())
+     }
+   }

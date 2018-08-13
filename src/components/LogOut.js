@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { logOut } from '../services/session/actions'
+import { handleLogOut } from '../services/session/api'
 import { handleSetAuthedUser } from '../services/session/api'
 import { handleFetchingData, handleFetchedData } from '../services/status/api'
 
@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 class LogOut extends Component {
   componentDidMount(){
     this.props.dispatch(handleSetAuthedUser(null))
-    this.props.dispatch(logOut())
+    this.props.dispatch(handleLogOut())
     this.props.dispatch(handleFetchingData(false))
     this.props.dispatch(handleFetchedData(false))
     this.props.history.index=0

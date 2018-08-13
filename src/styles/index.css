@@ -126,12 +126,19 @@ li {
   border: 1px solid #ccc;
 }
 
+.question-selected {
+  margin: 0 5px 0 5px;
+}
+
 .question-checkbox {
     position: relative;
     top: -1px;
     margin: 0 10px 0px 5px;
  }
 
+ .selected {
+   color: #0b6623
+ }
  .option-details{
    width : 100%;
  }
@@ -249,4 +256,9 @@ li {
 .subInfo{
   font-size: 0.8em;
   color: #969696;
+}
+
+.centered {
+  margin: auto;
+  padding: 5px;
 }

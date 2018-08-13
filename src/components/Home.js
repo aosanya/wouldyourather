@@ -1,21 +1,16 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import QuestionRespond from './QuestionRespond'
 import QuestionDisplay from './QuestionDisplay'
 import ContentWrapper from './ContentWrapper'
 import {formatQuestion}  from '../services/utils/helpers'
-import { fetchedData } from '../services/status/actions';
 
 class Home extends Component {
   state = {
     showingAnswered: false,
   }
 
-  componentDidMount(){
-    console.log(this.props.loading)
-    console.log(this.props.answeredQuestions)
-    console.log(this.props.unAnsweredQuestions)
-  }
+
 
   showAnswered = (e) => {
     this.setState(() => ({
@@ -56,11 +51,9 @@ class Home extends Component {
               (
                 <ul>
                   {questionsToDisplay.map((question) => (
-                      <li key={question.id}>
-                          { this.state.showingAnswered
-                            ? <QuestionDisplay formatedQuestion={question}/>
-                            : <QuestionRespond formatedQuestion={question}/>
-                          }
+                      <li key={question.id} className="panel roundedBorder">
+                          <QuestionDisplay formatedQuestion={question}/>
+                          <Link to={`/questions/${question.id}`} className="centered">View Poll</Link>
                       </li>
                     ))}
                 </ul>
@@ -94,7 +87,6 @@ function mapStateToProps ({ questions, users , authedUser, fetchingData }) {
 
   return {
     loading : fetchingData,
-    needsFetching : !fetchingData && !fetchedData === true,
     questionIds: Object.keys(questions)
       .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
     answeredQuestions: answeredQuestions,

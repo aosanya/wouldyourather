@@ -10,26 +10,26 @@ class Nav extends Component {
     return (
       <div id="sidebar-wrapper">
         <ul id="sidebar_menu" className="sidebar-nav">
-            <li className="sidebar-brand"><a id="menu-toggle" onClick={(e) => this.toggleMenu(e)}>Menu<span id="main_icon" className="glyphicon glyphicon-align-justify"></span></a></li>
+            <li className="sidebar-brand">Menu</li>
         </ul>
         <ul className="sidebar-nav" id="sidebar">
           <li className="sidebar-item" >
-            <Link to={`/`}>Home<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+            <Link to={`/`}>Home</Link>
           </li>
           <li className="sidebar-item" >
-            <Link to={`/vote`}>Vote<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+            <Link to={`/vote`}>Vote</Link>
           </li>
           <li className="sidebar-item" >
-            <Link to={`/myquestions`}>My Questions{myQuestionsCount}<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+            <Link to={`/myquestions`}>My Questions{myQuestionsCount}</Link>
           </li>
           <li className="sidebar-item" >
-            <Link to={`/add`}>Add Question<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+            <Link to={`/add`}>New Question</Link>
           </li>
           <li className="sidebar-item" >
-            <Link to={`/leaderboard`}>Leader Board<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+            <Link to={`/leaderboard`}>Leader Board</Link>
           </li>
           <li className="sidebar-item" >
-            <Link to={`/logout`}>Log Out<span className="sub_icon glyphicon glyphicon-link"></span></Link>
+            <Link to={`/logout`}>Log Out</Link>
           </li>
         </ul>
       </div>

@@ -35,9 +35,9 @@ class Login extends Component {
             />
         :
             <Fragment>
-             ({loading === true
+             {loading === true
               ? `Loading users`
-              :(
+              :
                 <div className="login">
                     <div className="user-select" key="use-select">
                         <select defaultValue="" onChange={this.onChange}>
@@ -48,8 +48,7 @@ class Login extends Component {
                         </select>
                     </div>
                 </div>
-              )
-              })
+              }
             </Fragment>
           }
          </Fragment>

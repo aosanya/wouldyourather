@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import QuestionDisplay from './QuestionDisplay'
+import QuestionRespond from './QuestionRespond'
 import QuestionInfo from './QuestionInfo'
 
 import Error404Private from './Error404Private'
@@ -18,8 +19,10 @@ class Question extends Component {
             noMatch ? <Error404Private info='This poll does not exist'/>
             :
               <div className="panel roundedBorder">
-                <QuestionInfo question={question}/>
-                <QuestionDisplay formatedQuestion={question}/>
+                 { question.hasResponded
+                    ? <Fragment><QuestionInfo question={question}/><QuestionDisplay formatedQuestion={question}/></Fragment>
+                    : <QuestionRespond formatedQuestion={question}/>
+                  }
               </div>
         }
       </ContentWrapper>
